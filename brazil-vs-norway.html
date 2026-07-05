@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+Brazil vs Norway — World Cup 2026 R16
+<style>
+  :root {
+    --bg:#0a0a12; --card:#1a1a28; --card2:#1e1e2e; --border:#222;
+    --text:#e0e0e0; --muted:#888;
+    --hot:#ef4444; --warm:#f59e0b; --cool:#22c55e;
+    --hot-bg:rgba(239,68,68,.18);--hot-fg:#fca5a5;
+    --warm-bg:rgba(245,158,11,.18);--warm-fg:#fde68a;
+    --cool-bg:rgba(34,197,94,.18);--cool-fg:#86efac;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-text-size-adjust:100%}
+  .container{max-width:1100px;margin:0 auto;padding:16px 10px}
+  @media(min-width:480px){.container{padding:20px 16px}}
+  @media(min-width:768px){.container{padding:28px 24px}}
+
+  .match-header{text-align:center;padding:20px 0 14px}
+  .match-header .tourney{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .match-header h1{font-size:clamp(20px,5vw,30px);font-weight:700;background:linear-gradient(135deg,#f0f0f0,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+  .match-header .meta{color:var(--muted);font-size:12px;margin-top:6px;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 12px}
+
+  .banners{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 20px;flex-wrap:wrap}
+  .banner{text-align:center;flex:1 1 110px;min-width:100px;max-width:260px}
+  .banner .flag{font-size:clamp(34px,8vw,48px)}
+  .banner h2{font-size:clamp(17px,4vw,24px);font-weight:700;margin:4px 0 2px}
+  .banner .sub{font-size:11px;color:var(--muted)}
+  .vs{width:clamp(40px,8vw,56px);height:clamp(40px,8vw,56px);border-radius:50%;background:linear-gradient(135deg,#ffd700,#ffaa00);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(14px,3vw,18px);color:#1a1a2e;flex-shrink:0}
+
+  .legend{display:flex;gap:6px 12px;flex-wrap:wrap;padding:6px 0;font-size:10px;color:var(--muted);align-items:center}
+  .legend-i{display:flex;align-items:center;gap:3px;white-space:nowrap}
+  .legend-s{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  @media(min-width:480px){.legend{font-size:12px;gap:8px 16px}.legend-s{width:12px;height:12px}}
+
+  .sec{margin:22px 0}
+  .sec-t{font-size:clamp(15px,3.5vw,18px);font-weight:600;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .sec-t .badge{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:500;white-space:nowrap}
+  .sec-t .sub{font-size:11px;color:var(--muted);font-weight:400;margin-left:auto}
+  @media(min-width:768px){.sec{margin:32px 0}.sec-t{margin-bottom:14px;padding-bottom:8px}}
+
+  .xi-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  @media(min-width:600px){.xi-wrap{overflow-x:visible}}
+  .xi-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:10px;overflow:hidden;font-size:14px}
+  .xi-table thead th{padding:10px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);text-align:left;background:#141420;white-space:nowrap}
+  .xi-table tbody tr{background:var(--card);transition:background .12s}
+  .xi-table tbody tr:nth-child(even){background:var(--card2)}
+  .xi-table tbody tr:active{background:#252538}
+  .xi-table td{padding:10px 12px;border-bottom:1px solid #1e1e2e;vertical-align:middle;white-space:nowrap}
+  .xi-table .pc{display:flex;align-items:center;gap:5px}
+  .xi-table .clb{color:var(--muted);font-size:13px}
+
+  /* ─── OVR badges (green=high, red=low) ─── */
+  .rtg{display:inline-block;padding:3px 8px;border-radius:5px;font-weight:700;font-size:12px;min-width:30px;text-align:center;white-space:nowrap}
+  .r90{background:rgba(34,197,94,.22);color:#4ade80}
+  .r85{background:rgba(34,197,94,.14);color:#86efac}
+  .r80{background:rgba(245,158,11,.14);color:#fde68a}
+  .r75{background:rgba(239,68,68,.12);color:#fca5a5}
+  .r70{background:rgba(239,68,68,.20);color:#ef4444}
+
+  /* ─── Salary badges: green=high earner (elite), red=low earner ─── */
+  .sal{display:inline-block;padding:3px 8px;border-radius:5px;font-weight:600;font-size:11px;white-space:nowrap}
+  .s-hi{background:var(--cool-bg);color:var(--cool-fg)}   /* green: elite earners */
+  .s-md{background:var(--warm-bg);color:var(--warm-fg)}   /* yellow: mid-range */
+  .s-lo{background:var(--hot-bg);color:var(--hot-fg)}     /* red: low earners */
+
+  .pb{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;background:#2a2a3e;color:#aaa}
+  .flg{font-size:14px}
+
+  @media(max-width:599px){
+    .xi-table,.xi-table tbody,.xi-table tr,.xi-table td{display:block}
+    .xi-table thead{display:none}
+    .xi-table{border-radius:0;overflow:visible}
+    .xi-table tbody tr{background:var(--card);margin-bottom:8px;border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:28px 36px 1fr auto auto auto;grid-template-rows:auto auto auto;grid-template-areas:"num pos name ovr . ." "club club club club club club" "caps caps gol gol sal sal";gap:2px 6px;align-items:center;border-bottom:none}
+    .xi-table tbody tr:nth-child(even){background:var(--card2)}
+    .xi-table td{border:none;padding:0;white-space:normal}
+    .xi-table td:nth-child(1){grid-area:num;font-weight:700;font-size:15px;text-align:center}
+    .xi-table td:nth-child(2){grid-area:pos}
+    .xi-table td:nth-child(3){grid-area:name;font-weight:600;font-size:14px}
+    .xi-table td:nth-child(6){grid-area:ovr;text-align:right}
+    .xi-table td:nth-child(5){grid-area:club;font-size:12px;color:var(--muted)}
+    .xi-table td:nth-child(7){grid-area:caps;font-size:11px;color:var(--muted)}
+    .xi-table td:nth-child(7)::after{content:" caps"}
+    .xi-table td:nth-child(8){grid-area:gol;font-size:12px;font-weight:600}
+    .xi-table td:nth-child(8)::before{content:"⚽"}
+    .xi-table td:nth-child(9){grid-area:sal;justify-self:end;font-size:11px}
+    .xi-table td:nth-child(4){display:none}
+    .xi-table .pb{font-size:9px;padding:1px 5px}
+    .xi-table .flg{font-size:13px}
+    .xi-table .rtg{font-size:11px;padding:2px 7px;min-width:26px}
+    .xi-table .sal{font-size:10px;padding:2px 6px}
+  }
+
+  .grid2,.grid-t,.grid-p{display:grid;gap:10px;margin:14px 0}
+  .grid2{grid-template-columns:1fr}.grid-t{grid-template-columns:1fr}.grid-p{grid-template-columns:1fr 1fr}
+  @media(min-width:480px){.grid2,.grid-t{grid-template-columns:1fr 1fr}}
+  @media(min-width:768px){.grid2,.grid-t{gap:14px}.grid-p{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}}
+  @media(min-width:900px){.grid-p{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}
+
+  .card{padding:13px;border-radius:9px;background:var(--card)}
+  .card h4{font-size:13px;font-weight:600;margin-bottom:7px;color:#ccc}
+  .card .big{font-size:clamp(26px,6vw,36px);font-weight:800;line-height:1}
+  .card .big-l{font-size:10px;color:var(--muted);margin-top:2px}
+  .card .mini2{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:6px}
+  @media(min-width:480px){.card{padding:15px}.card .big-l{font-size:11px}}
+  @media(min-width:768px){.card{padding:16px}.card h4{font-size:14px}.card .big-l{font-size:12px}}
+
+  .tcard{padding:13px;border-radius:9px;background:var(--card);border-left:3px solid}
+  .tcard h4{font-size:13px;margin-bottom:7px}
+  .tcard p{font-size:12px;color:#aaa;line-height:1.6}
+  .tcard p+p{margin-top:7px}
+  @media(min-width:768px){.tcard{padding:16px}.tcard h4{font-size:15px}.tcard p{font-size:13px}}
+
+  .pcard{padding:11px;border-radius:9px;background:var(--card);min-width:0}
+  .pcard .nm{font-weight:600;font-size:13px}
+  .pcard .dt{font-size:10px;color:var(--muted);margin:2px 0 4px}
+  .pcard .bgs{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+  @media(min-width:768px){.pcard{padding:13px}.pcard .nm{font-size:14px}.pcard .dt{font-size:11px}}
+
+  .ts-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;border-bottom:1px solid #1e1e2e;gap:6px}
+  .ts-row:last-child{border-bottom:none}.ts-row .lbl{color:var(--muted);flex-shrink:0}.ts-row .val{font-weight:600;text-align:right}
+  @media(min-width:768px){.ts-row{font-size:14px;padding:6px 0}}
+
+  .gtbl{width:100%;border-collapse:collapse;font-size:11px;margin:6px 0}
+  .gtbl th{text-align:left;padding:4px 7px;font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);border-bottom:1px solid var(--border)}
+  .gtbl td{padding:5px 7px;border-bottom:1px solid #1a1a2e}
+  .rw{color:var(--cool);font-weight:600}.rd{color:var(--warm);font-weight:600}.rl{color:var(--hot);font-weight:600}
+
+  .bar{display:flex;align-items:center;gap:6px;margin:4px 0;font-size:11px}
+  .bar .bl{width:66px;text-align:right;color:var(--muted);flex-shrink:0;font-size:10px}
+  .bar .bf{height:6px;border-radius:3px;min-width:2px}
+  .bar .bv{font-weight:600;font-size:11px;min-width:32px}
+  @media(min-width:480px){.bar{font-size:12px;gap:8px}.bar .bl{width:74px;font-size:11px}.bar .bf{height:7px}}
+  @media(min-width:768px){.bar{gap:10px;margin:6px 0;font-size:13px}.bar .bl{width:84px}.bar .bf{height:8px}}
+
+  .ins{background:#141420;border-radius:7px;padding:10px 12px;margin:8px 0;font-size:11px;color:#aaa;line-height:1.55}
+  .ins strong{color:var(--text)}
+  @media(min-width:480px){.ins{padding:12px 15px;font-size:12px}}
+  @media(min-width:768px){.ins{padding:14px 18px;font-size:13px}}
+
+  .pred{background:linear-gradient(135deg,#1a1a28,#252538);border:1px solid #333;border-radius:9px;padding:15px;margin:18px 0;text-align:center}
+  .pred h3{font-size:15px;font-weight:600;margin-bottom:4px}
+  .pred p{color:#aaa;font-size:12px}
+  @media(min-width:480px){.pred{padding:20px}.pred h3{font-size:17px}.pred p{font-size:13px}}
+
+  @media print{
+    body{background:#fff;color:#111;font-size:11px}
+    .container{max-width:100%;padding:0}
+    .match-header h1{-webkit-text-fill-color:#111}
+    .xi-table tbody tr,.card,.tcard,.pcard,.pred,.ins{background:#f8f8f8;border:1px solid #ddd}
+    .xi-table thead{display:table-header-group}
+    .xi-table,.xi-table tbody,.xi-table tr,.xi-table td{display:revert}
+    .xi-table tr{display:table-row;margin:0;padding:0;grid-template-columns:none;grid-template-rows:none;grid-template-areas:none}
+    .xi-wrap{overflow-x:visible}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="match-header">
+  <div class="tourney">FIFA World Cup 2026 • Round of 16</div>
+  <h1>🇧🇷 Brazil vs. Norway 🇳🇴</h1>
+  <div class="meta"><span>📍 MetLife Stadium, NJ</span><span>⏰ 4:00 PM ET</span><span>📅 Sun, July 5, 2026</span></div>
+</div>
+
+<div class="banners">
+  <div class="banner"><div class="flag">🇧🇷</div><h2>Brazil</h2><div class="sub">FIFA #5 · Power Rank #4 · Avg OVR 82.3</div></div>
+  <div class="vs">VS</div>
+  <div class="banner"><div class="flag">🇳🇴</div><h2>Norway</h2><div class="sub">FIFA #12 · Power Rank #9 · Avg OVR 78.8</div></div>
+</div>
+
+<div class="legend">
+  <span style="font-weight:600">OVR:</span>
+  <div class="legend-i"><div class="legend-s" style="background:#4ade80"></div>90+</div>
+  <div class="legend-i"><div class="legend-s" style="background:#86efac"></div>85–89</div>
+  <div class="legend-i"><div class="legend-s" style="background:#fde68a"></div>80–84</div>
+  <div class="legend-i"><div class="legend-s" style="background:#fca5a5"></div>75–79</div>
+  <div class="legend-i"><div class="legend-s" style="background:#ef4444"></div>70–74</div>
+  <span style="font-weight:600;margin-left:2px">£:</span>
+  <div class="legend-i"><div class="legend-s" style="background:#86efac"></div>Hi</div>
+  <div class="legend-i"><div class="legend-s" style="background:#fde68a"></div>Med</div>
+  <div class="legend-i"><div class="legend-s" style="background:#fca5a5"></div>Lo</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🗺️ Road to R16</div>
+  <div class="grid2">
+    <div class="card"><h4>🇧🇷 Brazil — Group C (7 pts)</h4>
+      <table class="gtbl"><tr><th>Opponent</th><th>Result</th></tr>
+        <tr><td>vs Morocco 🇲🇦</td><td class="rd">1-1 D</td></tr>
+        <tr><td>vs Haiti 🇭🇹</td><td class="rw">3-0 W</td></tr>
+        <tr><td>vs Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</td><td class="rw">3-0 W</td></tr>
+        <tr><td>🇯🇵 Japan (R32)</td><td class="rw">2-1 W</td></tr></table>
+    </div>
+    <div class="card"><h4>🇳🇴 Norway — Group I (6 pts)</h4>
+      <table class="gtbl"><tr><th>Opponent</th><th>Result</th></tr>
+        <tr><td>vs Iraq 🇮🇶</td><td class="rw">4-1 W</td></tr>
+        <tr><td>vs Senegal 🇸🇳</td><td class="rw">2-1 W</td></tr>
+        <tr><td>vs France 🇫🇷</td><td class="rl">1-4 L*</td></tr>
+        <tr><td>🇨🇮 Ivory Coast (R32)</td><td class="rw">1-0 W</td></tr></table>
+      <div style="font-size:10px;color:#666;margin-top:3px">*Rested 10 starters vs France</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🇧🇷 Brazil — 4-2-3-1 (Ancelotti) <span class="badge" style="background:rgba(34,197,94,.22);color:#4ade80">Avg 82.3</span></div>
+  <div class="xi-wrap"><table class="xi-table">
+    <thead><tr><th>#</th><th>Pos</th><th>Player</th><th>Age</th><th>Club</th><th>OVR</th><th>Caps</th><th>G</th><th>£/yr</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pb">GK</span></td><td class="pc"><span class="flg">🇧🇷</span>Alisson</td><td>33</td><td class="clb">Liverpool</td><td><span class="rtg r85">89</span></td><td>72</td><td>—</td><td><span class="sal s-hi">£10.4M</span></td></tr>
+      <tr><td>2</td><td><span class="pb">RB</span></td><td class="pc"><span class="flg">🇧🇷</span>Danilo</td><td>34</td><td class="clb">Flamengo</td><td><span class="rtg r80">82</span></td><td>61</td><td>0</td><td><span class="sal s-md">£3.4M</span></td></tr>
+      <tr><td>4</td><td><span class="pb">CB</span></td><td class="pc"><span class="flg">🇧🇷</span>Gabriel Magalhães</td><td>28</td><td class="clb">Arsenal</td><td><span class="rtg r85">86</span></td><td>22</td><td>1</td><td><span class="sal s-md">£6.2M</span></td></tr>
+      <tr><td>3</td><td><span class="pb">CB</span></td><td class="pc"><span class="flg">🇧🇷</span>Marquinhos</td><td>32</td><td class="clb">Paris Saint-Germain</td><td><span class="rtg r85">85</span></td><td>88</td><td>0</td><td><span class="sal s-hi">£10.1M</span></td></tr>
+      <tr><td>6</td><td><span class="pb">LB</span></td><td class="pc"><span class="flg">🇧🇷</span>Guilherme Arana</td><td>29</td><td class="clb">Atlético Mineiro</td><td><span class="rtg r75">78</span></td><td>14</td><td>0</td><td><span class="sal s-lo">£1.3M</span></td></tr>
+      <tr><td>5</td><td><span class="pb">CDM</span></td><td class="pc"><span class="flg">🇧🇷</span>Bruno Guimarães</td><td>28</td><td class="clb">Newcastle United</td><td><span class="rtg r85">86</span></td><td>34</td><td>1</td><td><span class="sal s-hi">£8.3M</span></td></tr>
+      <tr><td>8</td><td><span class="pb">CDM</span></td><td class="pc"><span class="flg">🇧🇷</span>João Gomes</td><td>25</td><td class="clb">Wolverhampton</td><td><span class="rtg r80">81</span></td><td>10</td><td>0</td><td><span class="sal s-md">£2.6M</span></td></tr>
+      <tr><td>10</td><td><span class="pb">CAM</span></td><td class="pc"><span class="flg">🇧🇷</span>Raphinha</td><td>29</td><td class="clb">Barcelona</td><td><span class="rtg r85">85</span></td><td>35</td><td>2</td><td><span class="sal s-hi">£12.6M</span></td></tr>
+      <tr><td>7</td><td><span class="pb">RW</span></td><td class="pc"><span class="flg">🇧🇷</span>Rodrygo</td><td>25</td><td class="clb">Real Madrid</td><td><span class="rtg r85">87</span></td><td>38</td><td>2</td><td><span class="sal s-hi">£10.4M</span></td></tr>
+      <tr><td>9</td><td><span class="pb">ST</span></td><td class="pc"><span class="flg">🇧🇷</span>Vinícius Júnior ⭐</td><td>25</td><td class="clb">Real Madrid</td><td><span class="rtg r90">90</span></td><td>48</td><td style="color:#4ade80;font-weight:700">4</td><td><span class="sal s-hi">£26.0M</span></td></tr>
+      <tr><td>11</td><td><span class="pb">LW</span></td><td class="pc"><span class="flg">🇧🇷</span>Gabriel Martinelli</td><td>25</td><td class="clb">Arsenal</td><td><span class="rtg r80">83</span></td><td>20</td><td>1</td><td><span class="sal s-md">£4.7M</span></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🇳🇴 Norway — 4-3-3 (Solbakken) <span class="badge" style="background:rgba(245,158,11,.14);color:#fde68a">Avg 78.8</span></div>
+  <div class="xi-wrap"><table class="xi-table">
+    <thead><tr><th>#</th><th>Pos</th><th>Player</th><th>Age</th><th>Club</th><th>OVR</th><th>Caps</th><th>G</th><th>£/yr</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><span class="pb">GK</span></td><td class="pc"><span class="flg">🇳🇴</span>Ørjan Nyland</td><td>35</td><td class="clb">Sevilla</td><td><span class="rtg r75">76</span></td><td>58</td><td>—</td><td><span class="sal s-lo">£1.3M</span></td></tr>
+      <tr><td>2</td><td><span class="pb">RB</span></td><td class="pc"><span class="flg">🇳🇴</span>Julian Ryerson</td><td>28</td><td class="clb">Borussia Dortmund</td><td><span class="rtg r75">79</span></td><td>30</td><td>0</td><td><span class="sal s-md">£2.9M</span></td></tr>
+      <tr><td>4</td><td><span class="pb">CB</span></td><td class="pc"><span class="flg">🇳🇴</span>Kristoffer Ajer</td><td>28</td><td class="clb">Brentford</td><td><span class="rtg r75">78</span></td><td>42</td><td>0</td><td><span class="sal s-md">£2.3M</span></td></tr>
+      <tr><td>5</td><td><span class="pb">CB</span></td><td class="pc"><span class="flg">🇳🇴</span>Andreas Hanche-Olsen</td><td>29</td><td class="clb">Mainz 05</td><td><span class="rtg r70">73</span></td><td>22</td><td>0</td><td><span class="sal s-lo">£1.0M</span></td></tr>
+      <tr><td>3</td><td><span class="pb">LB</span></td><td class="pc"><span class="flg">🇳🇴</span>Fredrik Bjørkan</td><td>27</td><td class="clb">Bodø/Glimt</td><td><span class="rtg r70">72</span></td><td>16</td><td>0</td><td><span class="sal s-lo">£0.4M</span></td></tr>
+      <tr><td>10</td><td><span class="pb">CM</span></td><td class="pc"><span class="flg">🇳🇴</span>Martin Ødegaard (C)</td><td>27</td><td class="clb">Arsenal</td><td><span class="rtg r85">87</span></td><td>61</td><td>1</td><td><span class="sal s-hi">£12.5M</span></td></tr>
+      <tr><td>8</td><td><span class="pb">CM</span></td><td class="pc"><span class="flg">🇳🇴</span>Sander Berge</td><td>28</td><td class="clb">Fulham</td><td><span class="rtg r80">80</span></td><td>50</td><td>0</td><td><span class="sal s-md">£3.1M</span></td></tr>
+      <tr><td>6</td><td><span class="pb">CM</span></td><td class="pc"><span class="flg">🇳🇴</span>Hugo Vetlesen</td><td>26</td><td class="clb">Club Brugge</td><td><span class="rtg r75">76</span></td><td>18</td><td>0</td><td><span class="sal s-lo">£0.9M</span></td></tr>
+      <tr><td>7</td><td><span class="pb">RW</span></td><td class="pc"><span class="flg">🇳🇴</span>Antonio Nusa</td><td>21</td><td class="clb">RB Leipzig</td><td><span class="rtg r75">78</span></td><td>14</td><td>1</td><td><span class="sal s-md">£2.1M</span></td></tr>
+      <tr><td>9</td><td><span class="pb">ST</span></td><td class="pc"><span class="flg">🇳🇴</span>Erling Haaland ⭐</td><td>25</td><td class="clb">Manchester City</td><td><span class="rtg r90">91</span></td><td>39</td><td style="color:#4ade80;font-weight:700">5</td><td><span class="sal s-hi">£45.0M</span></td></tr>
+      <tr><td>11</td><td><span class="pb">LW</span></td><td class="pc"><span class="flg">🇳🇴</span>Jørgen Strand Larsen</td><td>26</td><td class="clb">Wolverhampton</td><td><span class="rtg r75">77</span></td><td>20</td><td>0</td><td><span class="sal s-md">£1.8M</span></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="grid2" style="margin-top:20px">
+  <div class="card"><h4>🇧🇷 Brazil</h4>
+    <div class="ts-row"><span class="lbl">Avg OVR</span><span class="val" style="color:var(--warm)">82.3</span></div>
+    <div class="ts-row"><span class="lbl">Top Scorer</span><span class="val" style="color:var(--cool)">Vinícius — 4⚽</span></div>
+    <div class="ts-row"><span class="lbl">Top Earner</span><span class="val" style="color:var(--cool-fg)">Vinícius £26.0M</span></div>
+    <div class="ts-row"><span class="lbl">XI Total</span><span class="val">£89.8M/yr</span></div>
+    <div class="ts-row"><span class="lbl">Most Caps</span><span class="val">Marquinhos · 88</span></div>
+  </div>
+  <div class="card"><h4>🇳🇴 Norway</h4>
+    <div class="ts-row"><span class="lbl">Avg OVR</span><span class="val" style="color:var(--hot-fg)">78.8</span></div>
+    <div class="ts-row"><span class="lbl">Top Scorer</span><span class="val" style="color:var(--cool)">Haaland — 5⚽</span></div>
+    <div class="ts-row"><span class="lbl">Top Earner</span><span class="val" style="color:var(--cool-fg)">Haaland £45.0M</span></div>
+    <div class="ts-row"><span class="lbl">XI Total</span><span class="val">£73.9M/yr</span></div>
+    <div class="ts-row"><span class="lbl">Most Caps</span><span class="val">Ødegaard · 61</span></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📊 Tournament Metrics</div>
+  <div class="grid2">
+    <div class="card"><h4>🇧🇷 Brazil</h4>
+      <div class="bar"><span class="bl">Goals</span><div class="bf" style="width:80%;background:linear-gradient(90deg,var(--cool),var(--warm))"></div><span class="bv">9 GF</span></div>
+      <div class="bar"><span class="bl">Conceded</span><div class="bf" style="width:22%;background:var(--cool)"></div><span class="bv">2 GA</span></div>
+      <div class="bar"><span class="bl">Possession</span><div class="bf" style="width:58%;background:var(--warm)"></div><span class="bv">58%</span></div>
+      <div class="bar"><span class="bl">xG/game</span><div class="bf" style="width:70%;background:var(--warm)"></div><span class="bv">2.1</span></div>
+      <div class="bar"><span class="bl">Pass %</span><div class="bf" style="width:87%;background:var(--cool)"></div><span class="bv">87%</span></div>
+      <div class="bar"><span class="bl">Clean Sheets</span><div class="bf" style="width:50%;background:var(--warm)"></div><span class="bv">2</span></div>
+    </div>
+    <div class="card"><h4>🇳🇴 Norway</h4>
+      <div class="bar"><span class="bl">Goals</span><div class="bf" style="width:72%;background:linear-gradient(90deg,var(--cool),var(--warm))"></div><span class="bv">8 GF</span></div>
+      <div class="bar"><span class="bl">Conceded</span><div class="bf" style="width:55%;background:var(--hot)"></div><span class="bv">6 GA</span></div>
+      <div class="bar"><span class="bl">Possession</span><div class="bf" style="width:46%;background:var(--hot)"></div><span class="bv">46%</span></div>
+      <div class="bar"><span class="bl">xG/game</span><div class="bf" style="width:60%;background:var(--warm)"></div><span class="bv">1.8</span></div>
+      <div class="bar"><span class="bl">Pass %</span><div class="bf" style="width:82%;background:var(--warm)"></div><span class="bv">82%</span></div>
+      <div class="bar"><span class="bl">Clean Sheets</span><div class="bf" style="width:25%;background:var(--hot)"></div><span class="bv">1</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">👑 Golden Boot Race</div>
+  <div class="grid2">
+    <div class="card"><h4>🇧🇷 Vinícius Júnior — 4⚽</h4>
+      <div class="mini2"><div><div class="big" style="color:var(--cool)">4</div><div class="big-l">WC Goals</div></div><div><div class="big" style="color:var(--warm)">2</div><div class="big-l">Assists</div></div><div><div class="big" style="color:var(--muted)">48</div><div class="big-l">Caps</div></div><div><div class="big" style="color:var(--muted)">22</div><div class="big-l">Club G 25-26</div></div></div></div>
+    <div class="card"><h4>🇳🇴 Erling Haaland — 5⚽</h4>
+      <div class="mini2"><div><div class="big" style="color:var(--cool)">5</div><div class="big-l">WC Goals</div></div><div><div class="big" style="color:var(--warm)">1</div><div class="big-l">Assists</div></div><div><div class="big" style="color:var(--muted)">39</div><div class="big-l">Caps</div></div><div><div class="big" style="color:var(--muted)">27</div><div class="big-l">Club G 25-26</div></div></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">⚔️ Tactical Deep Dive</div>
+  <div class="grid-t">
+    <div class="tcard" style="border-left-color:var(--cool)"><h4>🇧🇷 Brazil</h4>
+      <p><strong>In Possession:</strong> Bruno G. drops between CBs to build; full-backs push high. Vinícius drifts central; Raphinha operates as a free #10. Rodrygo makes late runs from the right.</p>
+      <p><strong>Out of Possession:</strong> 4-4-2 press. Gabriel's recovery pace is elite. Key question: can João Gomes cover behind Danilo against Nusa's pace?</p>
+      <p><strong>Set Pieces:</strong> Gabriel (6'3") + Marquinhos are genuine aerial threats. Scored vs Japan from a Raphinha corner.</p></div>
+    <div class="tcard" style="border-left-color:var(--warm)"><h4>🇳🇴 Norway</h4>
+      <p><strong>In Possession:</strong> Win it → Ødegaard between lines → Haaland channel run within 3-4 passes. Nusa's dribbling (4.2/game) is the secondary outlet.</p>
+      <p><strong>Out of Possession:</strong> Compact 4-5-1 mid-block. Concede wings, clog middle. Force crosses; Ajer (6'5") clears. Midfield three deny Raphinha the half-turn.</p>
+      <p><strong>Set Pieces:</strong> Haaland + Ajer = tallest attacking pair. Norway's 3 set-piece goals lead all R16 teams.</p></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎯 Critical Matchups</div>
+  <div class="grid2">
+    <div class="card"><h4>⚡ Gabriel vs Haaland</h4><p style="font-size:12px;color:#aaa;margin-top:4px">The defining duel. Gabriel has the speed to stay with Haaland, but Haaland's movement between CB and FB is almost unmarkable. If isolated 1v1, Brazil are in trouble.</p></div>
+    <div class="card"><h4>🧠 Bruno G. vs Ødegaard</h4><p style="font-size:12px;color:#aaa;margin-top:4px">Two elite PL midfielders. If Ødegaard receives facing forward, Haaland's run is triggered. Whoever wins this chess match controls the game.</p></div>
+    <div class="card"><h4>🔥 Vinícius vs Ryerson</h4><p style="font-size:12px;color:#aaa;margin-top:4px">Ryerson has never faced a ball-carrier at this level in a knockout game. Expect Berge to double-team on that side.</p></div>
+    <div class="card"><h4>🛡️ Alisson vs 1v1</h4><p style="font-size:12px;color:#aaa;margin-top:4px">World's best 1v1 keeper vs the most clinical finisher. Alisson stopped 3 big chances vs Japan; he'll need that again.</p></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">⭐ Watch List</div>
+  <div class="grid-p">
+    <div class="pcard"><div class="nm">🇧🇷 Vinícius Jr.</div><div class="dt">Real Madrid · 4G 2A</div><div class="bgs"><span class="rtg r90">90</span><span class="sal s-hi">£26.0M</span></div></div>
+    <div class="pcard"><div class="nm">🇧🇷 Rodrygo</div><div class="dt">Real Madrid · 2G 3A</div><div class="bgs"><span class="rtg r85">87</span><span class="sal s-hi">£10.4M</span></div></div>
+    <div class="pcard"><div class="nm">🇧🇷 Bruno G.</div><div class="dt">Newcastle · 89% pass</div><div class="bgs"><span class="rtg r85">86</span><span class="sal s-hi">£8.3M</span></div></div>
+    <div class="pcard"><div class="nm">🇧🇷 Alisson</div><div class="dt">Liverpool · 2 CS</div><div class="bgs"><span class="rtg r85">89</span><span class="sal s-hi">£10.4M</span></div></div>
+    <div class="pcard"><div class="nm">🇳🇴 Haaland</div><div class="dt">Man City · 5G 1A</div><div class="bgs"><span class="rtg r90">91</span><span class="sal s-hi">£45.0M</span></div></div>
+    <div class="pcard"><div class="nm">🇳🇴 Ødegaard</div><div class="dt">Arsenal · 1G 3A</div><div class="bgs"><span class="rtg r85">87</span><span class="sal s-hi">£12.5M</span></div></div>
+    <div class="pcard"><div class="nm">🇳🇴 A. Nusa</div><div class="dt">RB Leipzig · 4.2 drib</div><div class="bgs"><span class="rtg r75">78</span><span class="sal s-md">£2.1M</span></div></div>
+    <div class="pcard"><div class="nm">🇳🇴 K. Ajer</div><div class="dt">Brentford · 6'5" CB</div><div class="bgs"><span class="rtg r75">78</span><span class="sal s-md">£2.3M</span></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🩺 Bench & Injuries</div>
+  <div class="grid2">
+    <div class="card"><h4>🇧🇷 Brazil</h4><div style="font-size:12px;color:#aaa;line-height:1.7"><strong>Neymar</strong> (doubt, calf) · <strong>Endrick</strong> (19yo wildcard) · <strong>Casemiro</strong> (vet closer) · <strong>Militão</strong> (CB depth) · <strong>Cunha</strong> (2G vs Haiti)</div></div>
+    <div class="card"><h4>🇳🇴 Norway</h4><div style="font-size:12px;color:#aaa;line-height:1.7"><strong>Sørloth</strong> (6'5" plan B) · <strong>Bobb</strong> (creative spark) · <strong>Pedersen</strong> (scored vs Senegal) · <strong>P. Berg</strong> (defensive cover)</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📜 History</div>
+  <div class="ins"><strong>🇧🇷 Brazil:</strong> 6th straight knockout stage. Won 8 of last 9 R16 matches. First comeback win in WC knockout since 2002 (vs Japan).</div>
+  <div class="ins"><strong>🇳🇴 Norway:</strong> First World Cup in 28 years. First knockout stage since 1998. Haaland: first Norwegian with 5 goals at a single World Cup.</div>
+</div>
+
+<div class="pred">
+  <h3>🔮 Brazil 2-1 Norway</h3>
+  <p>Brazil's depth and home crowd tilt this — but Norway have the single most dangerous player on the pitch. If Norway survive 60 minutes, Ødegaard → Haaland could produce the story of the tournament.</p>
+  <div style="margin-top:8px;font-size:11px;color:var(--muted)"><strong>Ref:</strong> D. Orsato (ITA) · <strong>Weather:</strong> 82°F, light breeze</div>
+</div>
+
+</div>
+</body>
+</html>
