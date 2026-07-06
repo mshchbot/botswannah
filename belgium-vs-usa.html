@@ -3,37 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>USA vs Belgium — World Cup 2026 Round of 16</title>
+<title>Belgium vs USA — World Cup 2026 Round of 16</title>
 <style>
+  :root{--cool:#2ecc71;--warm:#f1c40f;--hot:#e74c3c;--dark:#0a0e17;--card:#0f1a2e;--border:rgba(255,255,255,0.06)}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#0a0e17;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,sans-serif;line-height:1.5;padding:16px}
+  body{background:var(--dark);color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;line-height:1.5;padding:16px}
   .container{max-width:1200px;margin:0 auto}
-  
-  .tournament-header{text-align:center;padding:24px 16px 16px;background:linear-gradient(135deg,#0d1b3e,#1a2d5e);border-radius:16px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.06)}
+  .tournament-header{text-align:center;padding:24px 16px 16px;background:linear-gradient(135deg,#0d1b3e,#1a2d5e);border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
   .tournament-header .trophy{font-size:28px;margin-bottom:4px}
   .tournament-header h1{font-size:18px;font-weight:700;color:#fcd116;text-transform:uppercase;letter-spacing:2px}
   .tournament-header .stage{font-size:14px;color:#94a3b8;margin-top:4px}
   .tournament-header .venue{margin-top:6px;font-size:13px;color:#64748b}
-  
-  .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:16px;padding:24px 16px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.06)}
+  .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:16px;padding:24px 16px;margin-bottom:20px;border:1px solid var(--border)}
   .team-score{text-align:center}
   .team-score .flag{font-size:48px;display:block;margin-bottom:4px}
   .team-score .name{font-size:16px;font-weight:700;display:block}
   .team-score .rank{font-size:12px;color:#94a3b8;display:block;margin-top:2px}
   .team-score .color-bar{height:4px;border-radius:2px;margin:8px auto 0;width:48px}
+  .bel-bar{background:#e22726}
+  .usa-bar{background:#3b3fc1}
   .center-col{text-align:center}
   .center-col .score{font-size:42px;font-weight:800;letter-spacing:4px;color:#fff}
   .center-col .status{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#fcd116;padding:4px 12px;border-radius:20px;background:rgba(252,209,22,0.12);border:1px solid rgba(252,209,22,0.25)}
   .center-col .status .live-dot{width:8px;height:8px;border-radius:50%;background:#fcd116;animation:pulse 1.5s infinite}
   @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
-  .bel-bar{background:#e22726}
-  .usa-bar{background:#3b3fc1}
-  
-  .section-title{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-left:4px}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-left:4px;color:#fff}
   .section-title .icon{font-size:22px}
-  
   .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-  .comp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.06)}
+  .comp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
   .comp-card h3{font-size:14px;font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8}
   .comp-card .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
   .comp-card .stat:last-child{border-bottom:0}
@@ -41,9 +38,8 @@
   .comp-card .stat .value{font-weight:600}
   .comp-card.bel .stat .value{color:#f87171}
   .comp-card.usa .stat .value{color:#60a5fa}
-  
   .starting-xis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-  .xi-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.06);overflow:hidden}
+  .xi-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);overflow:hidden}
   .xi-card .xi-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
   .xi-card .xi-header .xi-flag{font-size:28px}
   .xi-card .xi-header .xi-name{font-size:16px;font-weight:700}
@@ -52,189 +48,244 @@
   .xi-card .player-row:last-child{border-bottom:0}
   .xi-card .player-row .num{font-weight:700;color:#94a3b8;text-align:center;font-size:12px;width:22px}
   .xi-card .player-row .pos{font-size:10px;color:#64748b;font-weight:600;width:22px;text-transform:uppercase;text-align:center}
-  .xi-card .player-row .pname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+  .xi-card .player-row .pname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:#fff}
   .xi-card .player-row .pclub{font-size:11px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
-  
-  .badge-rating{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:26px;padding:2px 14px;border-radius:20px;font-weight:700;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.25);box-shadow:0 1px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;letter-spacing:0.4px;white-space:nowrap}
+  .badge-rating{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:26px;padding:2px 14px;border-radius:20px;font-weight:700;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.25);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;letter-spacing:0.4px;white-space:nowrap}
   .badge-rating::before{content:"\2605";font-size:10px;margin-right:4px;opacity:0.8}
-  .badge-salary{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:26px;padding:2px 14px;border-radius:20px;font-weight:600;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.2);box-shadow:0 1px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;white-space:nowrap}
+  .badge-salary{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:26px;padding:2px 14px;border-radius:20px;font-weight:600;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.2);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;white-space:nowrap}
   .badge-salary::before{content:"$";font-size:10px;margin-right:3px;opacity:0.7}
-  
+  .s-hi{background:var(--cool)}
+  .s-md{background:var(--warm)}
+  .s-lo{background:var(--hot)}
   .key-players{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-  .kp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.06);text-align:center}
+  .kp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center}
   .kp-card .kp-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 8px}
-  .kp-card .kp-name{font-size:14px;font-weight:700}
+  .kp-card .kp-name{font-size:14px;font-weight:700;color:#fff}
   .kp-card .kp-pos{font-size:11px;color:#94a3b8;margin-top:2px}
   .kp-card .kp-club{font-size:11px;color:#64748b;margin-top:1px}
   .kp-card .kp-stats{display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
-  
   .squads-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-  .squad-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.06)}
+  .squad-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
   .squad-card .sq-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
   .squad-card .sq-header .sq-flag{font-size:24px}
-  .squad-card .sq-header .sq-name{font-size:15px;font-weight:700}
+  .squad-card .sq-header .sq-name{font-size:15px;font-weight:700;color:#fff}
   .squad-card .sq-header .sq-count{font-size:12px;color:#94a3b8;margin-left:auto}
   .squad-player{display:grid;grid-template-columns:26px 26px 1fr auto;align-items:center;gap:6px;padding:5px 2px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px}
   .squad-player:last-child{border-bottom:0}
   .squad-player .sq-num{font-weight:700;color:#64748b;text-align:center;font-size:11px}
   .squad-player .sq-pos{font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;text-align:center}
-  .squad-player .sq-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .squad-player .sq-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#e8e8e8}
   .squad-player .sq-club{font-size:10px;color:#94a3b8;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  
   .match-details{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-  .md-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:12px;padding:12px;text-align:center;border:1px solid rgba(255,255,255,0.06)}
+  .md-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:12px;padding:12px;text-align:center;border:1px solid var(--border)}
   .md-card .md-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px}
-  .md-card .md-value{font-size:13px;font-weight:600;margin-top:4px}
-  
+  .md-card .md-value{font-size:13px;font-weight:600;margin-top:4px;color:#fff}
+  .h2h-section{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:20px;text-align:center;border:1px solid var(--border);margin-bottom:24px}
+  .h2h-section .h2h-record{font-size:32px;font-weight:900;color:#fff}
+  .h2h-section .h2h-detail{color:#94a3b8;font-size:14px;margin-top:6px}
+  .h2h-section .h2h-note{color:#64748b;font-size:13px;margin-top:4px}
+  .prediction-banner{background:linear-gradient(135deg,#e2272622,#3b3fc122);border:1px solid #fcd116;border-radius:16px;padding:20px;text-align:center;margin:20px 0;font-size:16px;color:#fff;line-height:1.6}
   .disclaimer{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 16px;font-size:11px;color:#64748b;text-align:center;margin-top:20px;line-height:1.6}
-  
-  @media(max-width:768px){.starting-xis{grid-template-columns:1fr}.squads-grid{grid-template-columns:1fr}.key-players{grid-template-columns:1fr 1fr}.match-details{grid-template-columns:1fr 1fr}.comparison{grid-template-columns:1fr}.scoreboard{padding:16px 12px}.team-score .flag{font-size:36px}.center-col .score{font-size:32px}.xi-card .player-row{grid-template-columns:24px 22px 1fr auto auto;gap:6px;font-size:12px}.xi-card .player-row .pclub{display:none}}
-  @media(max-width:480px){body{padding:8px}.tournament-header h1{font-size:15px}.key-players{grid-template-columns:1fr 1fr}.kp-card .kp-avatar{width:40px;height:40px;font-size:15px}.match-details{grid-template-columns:1fr 1fr}.scoreboard{padding:12px 8px;gap:4px}.team-score .flag{font-size:28px}.center-col .score{font-size:26px}.xi-card .player-row{grid-template-columns:20px 20px 1fr auto auto;gap:4px;font-size:11px}.badge-rating{min-width:44px;height:24px;font-size:11px;padding:2px 10px}.badge-salary{min-width:58px;height:24px;font-size:11px;padding:2px 10px}}
+  .golden-boot{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);margin-bottom:24px}
+  .golden-boot table{width:100%;border-collapse:collapse;font-size:13px}
+  .golden-boot th{text-align:left;padding:10px 12px;border-bottom:2px solid #fcd116;color:#fcd116;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .golden-boot td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#e8e8e8}
+  .golden-boot td:last-child{text-align:center;font-weight:700}
+  @media print{body{background:#fff!important;color:#111!important}.tournament-header,.scoreboard,.comp-card,.xi-card,.kp-card,.squad-card,.md-card,.h2h-section,.golden-boot,.prediction-banner{background:#f5f5f5!important;border-color:#ddd!important;box-shadow:none!important}.badge-rating,.badge-salary{box-shadow:none!important;border-color:#ccc!important;color:#111!important;text-shadow:none!important}.section-title{color:#111!important}}
+  @media(max-width:768px){.starting-xis,.squads-grid{grid-template-columns:1fr}.key-players{grid-template-columns:1fr 1fr}.match-details{grid-template-columns:1fr 1fr}.comparison{grid-template-columns:1fr}.scoreboard{padding:16px 12px}.team-score .flag{font-size:36px}.center-col .score{font-size:32px}}
+  @media(max-width:480px){body{padding:8px}.tournament-header h1{font-size:15px}.key-players{grid-template-columns:1fr 1fr}.kp-card .kp-avatar{width:40px;height:40px;font-size:15px}.team-score .flag{font-size:28px}.center-col .score{font-size:26px}.xi-card .player-row .pclub{display:none}}
 </style>
 </head>
 <body>
 <div class="container">
-
-<div class="tournament-header"><div class="trophy">🏆</div><h1>FIFA World Cup 2026™</h1><div class="stage">Round of 16 · Match 94</div><div class="venue">📍 Lumen Field · Seattle, WA ·s Mon Jul 6, 2026 · 8:00 PM ET</div></div>
-
-<div class="scoreboard">
-<div class="team-score"><span class="flag">🇧🇪</span><span class="name" style="color:#f87171">Belgium</span><span class="rank">FIFA #9</span><div class="color-bar bel-bar"></div></div>
-<div class="center-col"><div class="score">–</div><div class="status"><span class="live-dot"></span>Upcoming · 8 PM ET</div></div>
-<div class="team-score"><span class="flag">����</span><span class="name" style="color:#60a5fa">United States</span><span class="rank">FIFA #16</span><div class="color-bar usa-bar"></div></div>
-</div>
-
-<div class="match-details">
-<div class="md-card"><div class="md-label">Date</div><div class="md-value">Mon, Jul 6</div></div>
-<div class="md-card"><div class="md-label">Kickoff</div><div class="md-value">8:00 PM ET</div></div>
-<div class="md-card"><div class="md-label">Venue</div><div class="md-value">Lumen Field</div></div>
-<div class="md-card"><div class="md-label">TV</div><div class="md-value">FOX · BBC</div></div>
-</div>
-
-<div class="section-title"><span class="icon">📊</span> Team Comparison</div>
-<div class="comparison">
-<div class="comp-card bel"><h3>🇧🇪 Belgium</h3><div class="stat"><span class="label">Manager</span><span class="value">Rudi Garcia</span></div><div class="stat"><span class="label">Group Stage Finish</span><span class="value">Group G · 1st (5 pts)</span></div><div class="stat"><span class="label">Round of 32</span><span class="value">3–2 vs Senegal (AET)</span></div><div class="stat"><span class="label">Goals Scored</span><span class="value">10</span></div><div class="stat"><span class="label">Goals Conceded</span><span class="value">4</span></div><div class="stat"><span class="label">Best WC Finish</span><span class="value">3rd (2018)</span></div></div>
-<div class="comp-card usa"><h3>���� United States</h3><div class="stat"><span class="label">Manager</span><span class="value">Mauricio Pochettino</span></div><div class="stat"><span class="label">Group Stage Finish</span><span class="value">Group D · 1st (6 pts)</span></div><div class="stat"><span class="label">Round of 32</span><span class="value">2–0 vs Bosnia &amp; Herz.</span></div><div class="stat"><span class="label">Goals Scored</span><span class="value">9</span></div><div class="stat"><span class="label">Goals Conceded</span><span class="value">2</span></div><div class="stat"><span class="label">Best WC Finish</span><span class="value">3rd (1930)</span></div></div>
-</div>
-
-<div class="section-title"><span class="icon">💕</span> Predicted Starting XIs</div>
-<div class="starting-xis">
-<div class="xi-card"><div class="xi-header"><span class="xi-flag">🇧🇪</span><span class="xi-name">Belgium (4-2-3-1)</span><span class="xi-form">Form: D-D-W-W</span></div>
-<div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">T. Courtois</span><span class="badge-rating" style="background:#22c55e">89</span><span class="badge-salary" style="background:#22c55e">27.0M</span><span class="pclub">Real Madrid</span></div>
-<div class="player-row"><span class="num">21</span><span class="pos">RB</span><span class="pname">T. Castagne</span><span class="badge-rating" style="background:#22c55e">82</span><span class="badge-salary" style="background:#eab308">6.5M</span><span class="pclub">Fulham</span></div>
-<div class="player-row"><span class="num">4</span><span class="pos">CB</span><span class="pname">B. Mechele</span><span class="badge-rating" style="background:#eab308">78</span><span class="badge-salary" style="background:#ef4444">2.8M</span><span class="pclub">Club Brugge</span></div>
-<div class="player-row"><span class="num">3</span><span class="pos">CB</span><span class="pname">A. Theate</span><span class="badge-rating" style="background:#eab308">79</span><span class="badge-salary" style="background:#eab308">4.2M</span><span class="pclub">Rennes</span></div>
-<div class="player-row"><span class="num">5</span><span class="pos">LB</span><span class="pname">M. De Cuyper</span><span class="badge-rating" style="background:#eab308">78</span><span class="badge-salary" style="background:#ef4444">2.1M</span><span class="pclub">Club Brugge</span></div>
-<div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">Y. Tielemans</span><span class="badge-rating" style="background:#22c55e">84</span><span class="badge-salary" style="background:#22c55e">9.4M</span><span class="pclub">Aston Villa</span></div>
-<div class="player-row"><span class="num">6</span><span class="pos">CM</span><span class="pname">H. Vanaken</span><span class="badge-rating" style="background:#eab308">80</span><span class="badge-salary" style="background:#eab308">4.8M</span><span class="pclub">Club Brugge</span></div>
-<div class="player-row"><span class="num">11</span><span class="pos">RW</span><span class="pname">L. Trossard</span><span class="badge-rating" style="background:#22c55e">84</span><span class="badge-salary" style="background:#22c55e">10.4M</span><span class="pclub">Arsenal</span></div>
-<div class="player-row"><span class="num">7</span><span class="pos">CAM</span><span class="pname">K. De Bruyne</span><span class="badge-rating" style="background:#22c55e">91</span><span class="badge-salary" style="background:#22c55e">26.0M</span><span class="pclub">Manchester City</span></div>
-<div class="player-row"><span class="num">10</span><span class="pos">LW</span><span class="pname">J. Doku</span><span class="badge-rating" style="background:#22c55e">83</span><span class="badge-salary" style="background:#22c55e">8.8M</span><span class="pclub">Manchester City</span></div>
-<div class="player-row"><span class="num">18</span><span class="pos">ST</span><span class="pname">C. De Ketelaere</span><span class="badge-rating" style="background:#eab308">79</span><span class="badge-salary" style="background:#eab308">5.2M</span><span class="pclub">Atalanta</span></div>
-<div style="padding:6px 2px 0;font-size:11px;color:#64748b;border-top:1px solid rgba(255,255,255,0.05);margin-top:4px">⏺ Impact subs: R. Lukaku (ST), A. Onana (CM), M. Batshuayi (ST), A. Witsel (CB)</div></div>
-<div class="xi-card"><div class="xi-header"><span class="xi-flag">����</span><span class="xi-name">United States (4-3-3)</span><span class="xi-form">Form: W-W-W-L</span></div>
-<div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">M. Freese</span><span class="badge-rating" style="background:#eab308">79</span><span class="badge-salary" style="background:#ef4444">2.0M</span><span class="pclub">NYCFC</span></div>
-<div class="player-row"><span class="num">22</span><span class="pos">RB</span><span class="pname">A. Freeman</span><span class="badge-rating" style="background:#eab308">77</span><span class="badge-salary" style="background:#ef4444">1.2M</span><span class="pclub">Orlando City</span></div>
-<div class="player-row"><span class="num">3</span><span class="pos">CB</span><span class="pname">C. Richards</span><span class="badge-rating" style="background:#eab308">79</span><span class="badge-salary" style="background:#eab308">4.5M</span><span class="pclub">Crystal Palace</span></div>
-<div class="player-row"><span class="num">13</span><span class="pos">CB</span><span class="pname">T. Ream</span><span class="badge-rating" style="background:#eab308">77</span><span class="badge-salary" style="background:#ef4444">1.5M</span><span class="pclub">Charlotte FC</span></div>
-<div class="player-row"><span class="num">5</span><span class="pos">LB</span><span class="pname">A. Robinson</span><span class="badge-rating" style="background:#22c55e">82</span><span class="badge-salary" style="background:#eab308">5.2M</span><span class="pclub">Fulham</span></div>
-<div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">W. McKennie</span><span class="badge-rating" style="background:#22c55e">83</span><span class="badge-salary" style="background:#eab308">6.8M</span><span class="pclub">Juventus</span></div>
-<div class="player-row"><span class="num">4</span><span class="pos">CM</span><span class="pname">T. Adams</span><span class="badge-rating" style="background:#eab308">80</span><span class="badge-salary" style="background:#eab308">5.5M</span><span class="pclub">Bournemouth</span></div>
-<div class="player-row"><span class="num">6</span><span class="pos">CM</span><span class="pname">M. Tillman</span><span class="badge-rating" style="background:#eab308">78</span><span class="badge-salary" style="background:#eab308">4.0M</span><span class="pclub">PSV</span></div>
-<div class="player-row"><span class="num">2</span><span class="pos">RWB</span><span class="pname">S. Dest</span><span class="badge-rating" style="background:#22c55e">81</span><span class="badge-salary" style="background:#eab308">5.0M</span><span class="pclub">PSV</span></div>
-<div class="player-row"><span class="num">20</span><span class="pos">ST</span><span class="pname">F. Balogun</span><span class="badge-rating" style="background:#22c55e">82</span><span class="badge-salary" style="background:#22c55e">7.8M</span><span class="pclub">Monaco</span></div>
-<div class="player-row"><span class="num">10</span><span class="pos">LW</span><span class="pname">C. Pulisic</span><span class="badge-rating" style="background:#22c55e">85</span><span class="badge-salary" style="background:#22c55e">12.5M</span><span class="pclub">AC Milan</span></div>
-<div style="padding:6px 2px 0;font-size:11px;color:#64748b;border-top:1px solid rgba(255,255,255,0.05);margin-top:4px">⏺ Impact subs: R. Pepi (ST), G. Reyna (CAM), C. Roldan (MF), M. McKenzie (CB)</div></div>
-</div>
-
-<div class="section-title"><span class="icon">ⅰ</span> Key Players to Watch</div>
-<div class="key-players">
-<div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#000)">7</div><div class="kp-name">K. De Bruyne</div><div class="kp-pos">CAM · Belgium</div><div class="kp-club">Manchester City</div><div class="kp-stats"><span class="badge-rating" style="background:#22c55e">91</span><span class="badge-salary" style="background:#22c55e">26.0M</span></div></div>
-<div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ffd700)">10</div><div class="kp-name">R. Lukaku</div><div class="kp-pos">ST · Belgium</div><div class="kp-club">Free Agent</div><div class="kp-stats"><span class="badge-rating" style="background:#22c55e">85</span><span class="badge-salary" style="background:#22c55e">14.0M</span></div></div>
-<div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#3b3fc1,#fff)">10</div><div class="kp-name">C. Pulisic</div><div class="kp-pos">LW · USA</div><div class="kp-club">AC Milan</div><div class="kp-stats"><span class="badge-rating" style="background:#22c55e">85</span><span class="badge-salary" style="background:#22c55e">12.5M</span></div></div>
-<div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#3b3fc1,#fff)">20</div><div class="kp-name">F. Balogun</div><div class="kp-pos">ST · USA</div><div class="kp-club">Monaco</div><div class="kp-stats"><span class="badge-rating" style="background:#22c55e">82</span><span class="badge-salary" style="background:#22c55e">7.8M</span></div></div>
-</div>
-
-<div class="section-title"><span class="icon">🃏</span> Full 26-Player Squads</div>
-<div class="squads-grid">
-<div class="squad-card"><div class="sq-header"><span class="sq-flag">🇧🇪</span><span class="sq-name">Belgium</span><span class="sq-count">26 players</span></div>
-<div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">T. Courtois</span><span class="sq-club">Real Madrid</span></div>
-<div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">S. Lammens</span><span class="sq-club">Manchester United</span></div>
-<div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">GK</span><span class="sq-name">M. Sels</span><span class="sq-club">Nottingham Forest</span></div>
-<div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">RB</span><span class="sq-name">T. Castagne</span><span class="sq-club">Fulham</span></div>
-<div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">RB</span><span class="sq-name">M. Saelemaengers</span><span class="sq-club">Roma</span></div>
-<div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">CB</span><span class="sq-name">B. Mechele</span><span class="sq-club">Club Brugge</span></div>
-<div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">CB</span><span class="sq-name">A. Theate</span><span class="sq-club">Rennes</span></div>
-<div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">CB</span><span class="sq-name">Z. Debast</span><span class="sq-club">Sporting CP</span></div>
-<div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">CB</span><span class="sq-name">A. Witsel</span><span class="sq-club">Atlético Madrid</span></div>
-<div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">LB</span><span class="sq-name">M.; De Cuyper</span><span class="sq-club">Club Brugge</span></div>
-<div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">LB</span><span class="sq-name">O. Deman</span><span class="sq-club">Werder Bremen</span></div>
-<div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">CM</span><span class="sq-name">Y. Tielemans</span><span class="sq-club">Aston Villa</span></div>
-<div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">CN</span><span class="sq-name">H. Vanaken</span><span class="sq-club">Club Brugge</span></div>
-<div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">CM</span><span class="sq-name">A. Onana</span><span class="sq-club">Aston Villa</span></div>
-<div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">CM</span><span class="sq-name">O. Mangala</span><span class="sq-club">Lyon</span></div>
-<div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">CAM</span><span class="sq-name">K. De Bruyne</span><span class="sq-club">Manchester City</span></div>
-<div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">LW</span><span class="sq-name">L. Trossard</span><span class="sq-club">Arsenal</span></div>
-<div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">LW</span><span class="sq-name">J. Doku</span><span class="sq-club">Manchester City</span></div>
-<div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">RW</span><span class="sq-name">D. Lukebakio</span><span class="sq-club">Sevilla</span></div>
-<div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">ST</span><span class="sq-name">C. De Ketelaere</span><span class="sq-club">Atalanta</span></div>
-<div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">ST</span><span class="sq-name">R. Lukaku</span><span class="sq-club">Free Agent</span></div>
-<div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">ST</span><span class="sq-name">M. Batshuayi</span><span class="sq-club">Galatasaray</span></div>
-<div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">ST</span><span class="sq-name">L. Openda</span><span class="sq-club">RB Leipzig</span></div></div>
-<div class="squad-card"><div class="sq-header"><span class="sq-flag">����</span><span class="sq-name">United States</span><span class="sq-count">26 players</span></div>
-<div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">M. Freese</span><span class="sq-club">NYCFC</span></div>
-<div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">GK</span><span class="sq-name">M. Turner</span><span class="sq-club">Crystal Palace</span></div>
-<div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">GK</span><span class="sq-name">C. Brady</span><span class="sq-club">Chicago Fire</span></div>
-<div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">RB</span><span class="sq-name">A. Freeman</span><span class="sq-club">Orlando City</span></div>
-<div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">RWB</span><span class="sq-name">S. Dest</span><span class="sq-club">PSV</span></div>
-<div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">CB</span><span class="sq-name">C. Richards</span><span class="sq-club">Crystal Palace</span></div>
-<div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">CB</span><span class="sq-name">T. Ream</span><span class="sq-club">Charlotte FC</span></div>
-<div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">CB</span><span class="sq-name">M. McKenzie</span><span class="sq-club">Toulouse</span></div>
-<div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">CB</span><span class="sq-name">M. Robinson</span><span class="sq-club">FC Cincinnati</span></div>
-<div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">LB</span><span class="sq-name">A. Robinson</span><span class="sq-club">Fulham</span></div>
-<div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">LB</span><span class="sq-name">K. Wagner</span><span class="sq-club">LAFC</span></div>
-<div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">CM</span><span class="sq-name">T. Adams</span><span class="sq-club">Bournemouth</span></div>
-<div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">CM</span><span class="sq-name">W. McKennie</span><span class="sq-club">Juventus</span></div>
-<div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">CM</span><span class="sq-name">M. Tillman</span><span class="sq-club">PSV</span></div>
-<div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">CM</span><span class="sq-name">C. Roldan</span><span class="sq-club">Seattle Sounders</span></div>
-<div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">CM</span><span class="sq-name">J. McGlynn</span><span class="sq-club">Philadelphia Union</span></div>
-<div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">LW</span><span class="sq-name">C. Pulisic</span><span class="sq-club">AC Milan</span></div>
-<div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">RW</span><span class="sq-name">G. Reyna</span><span class="sq-club">Borussia Dortmund</span></div>
-<div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">LW</span><span class="sq-name">T. Weah</span><span class="sq-club">Juventus</span></div>
-<div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">ST</span><span class="sq-name">F. Balogun</span><span class="sq-club">Monaco</span></div>
-<div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">ST</span><span class="sq-name">R. Pepi</span><span class="sq-club">PSV</span></div>
-<div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">ST</span><span class="sq-name">J. Sargent</span><span class="sq-club">Norwich City</span></div>
-<div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">ST</span><span class="sq-name">B. Aaronson</span><span class="sq-club">Leeds United</span></div></div>
-</div>
-
-<div class="section-title"><span class="icon">📜</span> Head to Head</div>
-<div class="comparison" style="grid-template-columns:1fr">
-<div class="comp-card" style="text-align:center;padding:20px">
-<div style="font-size:36px;font-weight:900;color:#fff">7 Meetings</div>
-<div style="color:#aaa;font-size:14px;margin-top:6px">🇧🇪 Belgium: 6 wins · ���� USA: 1 win · Draws: 0</div>
-<div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-<span style="background:rgba(255,255,255,0.05);padding:6px 14px;border-radius:10px;font-size:12px">1930 WC: USA 3–0 Belgium</span>
-<span style="background:rgba(255,255,255,0.05);padding:6px 14px;border-radius:10px;font-size:12px">2014 WC R16: Belgium 2–1 USA (AET)</span>
-<span style="background:rgba(255,255,255,0.05);padding:6px 14px;border-radius:10px;font-size:12px">Mar 2026: Belgium 5–2 USA (Friendly)</span>
-</div>
-<div style="color:#94a3b8;font-size:13px;margin-top:12px">Belgium have won 6 straight vs the USA since 1930</div>
-</div></div>
-
-<div class="section-title"><span class="icon">🔮</span> Match Prediction</div>
-<div class="comp-card" style="border:1px solid rgba(252,209,22,0.2);background:linear-gradient(135deg,#0f1a2e,#1a2d1e);padding:20px;border-radius:14px;margin-bottom:20px">
-<div style="text-align:center">
-<div style="font-size:16px;color:#fff;margin-bottom:8px">⦽ USA 2–1 Belgium (AET)</div>
-<div style="font-size:13px;color:#94a3b8;line-height:1.8">
-The co-hosts have been electric in front of massive home crouds, scoring 9 goals across 4 matches.<br>
-Belgium’s route here has been rocky — fortunate to escape the group and needing a miracle comeback vs Senegal.<br>
-But the Red Devils have world-class talent in De Bruyne and Courtois who can decide a game on their own.<br>
-<strong style="color:#fcd116">Winner faces Spain or Portugal in the Quarter-Finals.</strong>
-</div></div></div>
-
-<div class="disclaimer">
-Data compiled July 6, 2026 · Match scheduled for 8:00 PM ET at Lumen Field, Seattle<br>
-Predicted lineups based on pre-match reports. Subject to change.<br>
-Referee: Adham Makhadmeh (Jordan)
-</div>
+  <div class="tournament-header">
+    <div class="trophy">&#x1F3C6;</div>
+    <h1>FIFA World Cup 2026&#x2122;</h1>
+    <div class="stage">Round of 16 &middot; Match 94</div>
+    <div class="venue">&#x1F4CD; Lumen Field &middot; Seattle, WA &middot; Mon Jul 6, 2026 &middot; 8:00 PM ET</div>
+  </div>
+  <div class="scoreboard">
+    <div class="team-score">
+      <span class="flag">&#x1F1E7;&#x1F1EA;</span>
+      <span class="name" style="color:#f87171">Belgium</span>
+      <span class="rank">FIFA #6 &middot; Group G Winners</span>
+      <div class="color-bar bel-bar"></div>
+    </div>
+    <div class="center-col">
+      <div class="score">VS</div>
+      <div class="status"><span class="live-dot"></span> Up Next</div>
+    </div>
+    <div class="team-score">
+      <span class="flag">&#x1F1FA;&#x1F1F8;</span>
+      <span class="name" style="color:#60a5fa">USA</span>
+      <span class="rank">FIFA #11 &middot; Group A Runners-up</span>
+      <div class="color-bar usa-bar"></div>
+    </div>
+  </div>
+  <div class="match-details">
+    <div class="md-card"><div class="md-label">Date</div><div class="md-value">Mon, Jul 6</div></div>
+    <div class="md-card"><div class="md-label">Kickoff</div><div class="md-value">8:00 PM ET</div></div>
+    <div class="md-card"><div class="md-label">Venue</div><div class="md-value">Lumen Field, Seattle</div></div>
+    <div class="md-card"><div class="md-label">Broadcast</div><div class="md-value">FOX &middot; Univision</div></div>
+  </div>
+  <div class="section-title"><span class="icon">&#x1F4CA;</span> Team Comparison</div>
+  <div class="comparison">
+    <div class="comp-card bel">
+      <h3>&#x1F1E7;&#x1F1EA; Belgium</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#6</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group G Winners (W1 D2)</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat Senegal 3-2 (AET)</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">7</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">5</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">3rd (2018)</span></div>
+    </div>
+    <div class="comp-card usa">
+      <h3>&#x1F1FA;&#x1F1F8; USA</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#11</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group A Runners-up</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat South Korea 2-0</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">5</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">2</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">Quarterfinals (2002)</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">&#x26BD;</span> Predicted Starting XIs</div>
+  <div class="starting-xis">
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">&#x1F1E7;&#x1F1EA;</span><span class="xi-name">Belgium</span><span class="xi-form">4-3-3</span></div>
+      <div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">T. Courtois</span><span class="pclub">Real Madrid</span><span class="badge-rating s-hi">91</span></div>
+      <div class="player-row"><span class="num">21</span><span class="pos">RB</span><span class="pname">T. Castagne</span><span class="pclub">Fulham</span><span class="badge-rating s-md">81</span></div>
+      <div class="player-row"><span class="num">4</span><span class="pos">CB</span><span class="pname">B. Mechele</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">3</span><span class="pos">CB</span><span class="pname">A. Theate</span><span class="pclub">Rennes</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">5</span><span class="pos">LB</span><span class="pname">M. De Cuyper</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">78</span></div>
+      <div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">H. Vanaken</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">82</span></div>
+      <div class="player-row"><span class="num">11</span><span class="pos">CM</span><span class="pname">Y. Tielemans</span><span class="pclub">Aston Villa</span><span class="badge-rating s-md">83</span></div>
+      <div class="player-row"><span class="num">7</span><span class="pos">RW</span><span class="pname">J. Doku</span><span class="pclub">Manchester City</span><span class="badge-rating s-md">84</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">AM</span><span class="pname">K. De Bruyne (c)</span><span class="pclub">Manchester City</span><span class="badge-rating s-hi">90</span></div>
+      <div class="player-row"><span class="num">22</span><span class="pos">LW</span><span class="pname">L. Trossard</span><span class="pclub">Arsenal</span><span class="badge-rating s-md">84</span></div>
+      <div class="player-row"><span class="num">9</span><span class="pos">ST</span><span class="pname">R. Lukaku</span><span class="pclub">Chelsea (loan)</span><span class="badge-rating s-hi">86</span></div>
+    </div>
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">&#x1F1FA;&#x1F1F8;</span><span class="xi-name">USA</span><span class="xi-form">4-3-3</span></div>
+      <div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">M. Turner</span><span class="pclub">Nott'm Forest</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">22</span><span class="pos">RB</span><span class="pname">J. Scally</span><span class="pclub">M'gladbach</span><span class="badge-rating s-md">78</span></div>
+      <div class="player-row"><span class="num">4</span><span class="pos">CB</span><span class="pname">C. Richards</span><span class="pclub">Crystal Palace</span><span class="badge-rating s-md">77</span></div>
+      <div class="player-row"><span class="num">13</span><span class="pos">CB</span><span class="pname">T. Ream</span><span class="pclub">Fulham</span><span class="badge-rating s-md">78</span></div>
+      <div class="player-row"><span class="num">5</span><span class="pos">LB</span><span class="pname">A. Robinson</span><span class="pclub">Fulham</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">7</span><span class="pos">CDM</span><span class="pname">T. Adams</span><span class="pclub">Bournemouth</span><span class="badge-rating s-md">81</span></div>
+      <div class="player-row"><span class="num">17</span><span class="pos">CM</span><span class="pname">W. McKennie</span><span class="pclub">Juventus</span><span class="badge-rating s-md">82</span></div>
+      <div class="player-row"><span class="num">11</span><span class="pos">CM</span><span class="pname">Y. Musah</span><span class="pclub">AC Milan</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">LW</span><span class="pname">C. Pulisic (c)</span><span class="pclub">Milan</span><span class="badge-rating s-md">84</span></div>
+      <div class="player-row"><span class="num">20</span><span class="pos">ST</span><span class="pname">F. Balogun</span><span class="pclub">Monaco</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">21</span><span class="pos">RW</span><span class="pname">T. Weah</span><span class="pclub">Juventus</span><span class="badge-rating s-md">78</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">&#x2B50;</span> Key Players</div>
+  <div class="key-players">
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">KB</div><div class="kp-name">Kevin De Bruyne</div><div class="kp-pos">Playmaker &middot; Belgium</div><div class="kp-club">Manchester City</div><div class="kp-stats"><span class="badge-rating s-hi">90</span><span class="badge-salary s-hi">$21.7M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">RL</div><div class="kp-name">Romelu Lukaku</div><div class="kp-pos">Striker &middot; Belgium</div><div class="kp-club">Chelsea</div><div class="kp-stats"><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$18.2M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#3b3fc1,#6b7bff)">CP</div><div class="kp-name">Christian Pulisic</div><div class="kp-pos">Captain &middot; USA</div><div class="kp-club">AC Milan</div><div class="kp-stats"><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$8.3M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#3b3fc1,#6b7bff)">FB</div><div class="kp-name">Folarin Balogun</div><div class="kp-pos">Striker &middot; USA</div><div class="kp-club">Monaco</div><div class="kp-stats"><span class="badge-rating s-md">80</span><span class="badge-salary s-md">$5.2M</span></div></div>
+  </div>
+  <div class="section-title"><span class="icon">&#x1F4CB;</span> Full Squads</div>
+  <div class="squads-grid">
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">&#x1F1E7;&#x1F1EA;</span><span class="sq-name">Belgium</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">Matz Sels</span><span class="sq-club">Nott'm Forest</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">Zeno Debast</span><span class="sq-club">Anderlecht</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">Arthur Theate</span><span class="sq-club">Rennes</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">DF</span><span class="sq-name">Brandon Mechele</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">DF</span><span class="sq-name">Maxim De Cuyper</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">MF</span><span class="sq-name">Orel Mangala</span><span class="sq-club">Lyon</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">Jeremy Doku</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">Hans Vanaken</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">Romelu Lukaku</span><span class="sq-club">Chelsea</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">MF</span><span class="sq-name">Kevin De Bruyne (c)</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">MF</span><span class="sq-name">Youri Tielemans</span><span class="sq-club">Aston Villa</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">Thibaut Courtois</span><span class="sq-club">Real Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">GK</span><span class="sq-name">Thomas Kaminski</span><span class="sq-club">Luton Town</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">DF</span><span class="sq-name">Wout Faes</span><span class="sq-club">Leicester City</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">MF</span><span class="sq-name">Amadou Onana</span><span class="sq-club">Aston Villa</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">DF</span><span class="sq-name">Ameen Al-Dakhil</span><span class="sq-club">Burnley</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">FW</span><span class="sq-name">Charles De Ketelaere</span><span class="sq-club">Atalanta</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">DF</span><span class="sq-name">Timothy Castagne</span><span class="sq-club">Fulham</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">FW</span><span class="sq-name">Lois Openda</span><span class="sq-club">RB Leipzig</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">DF</span><span class="sq-name">Sebastiaan Bornauw</span><span class="sq-club">Wolfsburg</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">MF</span><span class="sq-name">Mandela Keita</span><span class="sq-club">Antwerp</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">FW</span><span class="sq-name">Leandro Trossard</span><span class="sq-club">Arsenal</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">MF</span><span class="sq-name">Alexis Saelemaekers</span><span class="sq-club">Milan</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">MF</span><span class="sq-name">Dodi Lukebakio</span><span class="sq-club">Sevilla</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">MF</span><span class="sq-name">Arthur Vermeeren</span><span class="sq-club">Atletico Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">DF</span><span class="sq-name">Jorne Spileers</span><span class="sq-club">Club Brugge</span></div>
+    </div>
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">&#x1F1FA;&#x1F1F8;</span><span class="sq-name">USA</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">Matt Turner</span><span class="sq-club">Nott'm Forest</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">Cameron Carter-Vickers</span><span class="sq-club">Celtic</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">Chris Richards</span><span class="sq-club">Crystal Palace</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">MF</span><span class="sq-name">Tyler Adams</span><span class="sq-club">Bournemouth</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">DF</span><span class="sq-name">Antonee Robinson</span><span class="sq-club">Fulham</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">DF</span><span class="sq-name">Tim Ream</span><span class="sq-club">Fulham</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">Christian Pulisic (c)</span><span class="sq-club">AC Milan</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">Weston McKennie</span><span class="sq-club">Juventus</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">Ricardo Pepi</span><span class="sq-club">PSV</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">FW</span><span class="sq-name">Folarin Balogun</span><span class="sq-club">Monaco</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">MF</span><span class="sq-name">Yunus Musah</span><span class="sq-club">AC Milan</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">Ethan Horvath</span><span class="sq-club">Cardiff City</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">DF</span><span class="sq-name">Joe Scally</span><span class="sq-club">M'gladbach</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">DF</span><span class="sq-name">Mark McKenzie</span><span class="sq-club">Genk</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">MF</span><span class="sq-name">Luca de la Torre</span><span class="sq-club">Celta Vigo</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">FW</span><span class="sq-name">Timothy Weah</span><span class="sq-club">Juventus</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">FW</span><span class="sq-name">Josh Sargent</span><span class="sq-club">Norwich City</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">DF</span><span class="sq-name">Miles Robinson</span><span class="sq-club">FC Cincinnati</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">MF</span><span class="sq-name">Gio Reyna</span><span class="sq-club">Dortmund</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">MF</span><span class="sq-name">Brenden Aaronson</span><span class="sq-club">Union Berlin</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">MF</span><span class="sq-name">Malik Tillman</span><span class="sq-club">PSV</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">GK</span><span class="sq-name">Diego Kochen</span><span class="sq-club">Barcelona B</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">DF</span><span class="sq-name">Kristoffer Lund</span><span class="sq-club">Palermo</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">MF</span><span class="sq-name">Aidan Morris</span><span class="sq-club">Middlesbrough</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">FW</span><span class="sq-name">Alex Zendejas</span><span class="sq-club">Club America</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">DF</span><span class="sq-name">Sergino Dest</span><span class="sq-club">PSV</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">&#x2694;&#xFE0F;</span> Head to Head</div>
+  <div class="h2h-section">
+    <div class="h2h-record">Belgium 6 &ndash; 1 USA</div>
+    <div class="h2h-detail">7 meetings &middot; The Red Devils have dominated the all-time series</div>
+    <div class="h2h-note">Last meeting: 2014 World Cup Round of 16 &mdash; Belgium won 2-1 (De Bruyne, Lukaku; Green). Tim Howard's famous 15-save match.</div>
+  </div>
+  <div class="section-title"><span class="icon">&#x1F4A1;</span> Tactical Preview</div>
+  <div class="comparison">
+    <div class="comp-card bel"><h3>&#x1F1E7;&#x1F1EA; Belgium's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">4-3-3 / 4-2-3-1</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">Patient build-up, De Bruyne orchestrates</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Wide play through Doku &amp; Trossard</span></div>
+      <div class="stat"><span class="label">Weakness</span><span class="value">Defensive transitions &mdash; CBs exposed to pace</span></div>
+    </div>
+    <div class="comp-card usa"><h3>&#x1F1FA;&#x1F1F8; USA's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">4-3-3 high press</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">Energy, press &amp; quick transitions</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Pulisic cutting in from the left</span></div>
+      <div class="stat"><span class="label">Weakness</span><span class="value">Aerial duels vs Lukaku</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">&#x26A1;</span> Golden Boot Watch</div>
+  <div class="golden-boot">
+    <table><tr><th>Player</th><th>Team</th><th style="text-align:center">Goals</th></tr>
+      <tr><td>Romelu Lukaku</td><td>&#x1F1E7;&#x1F1EA; Belgium</td><td style="text-align:center">3</td></tr>
+      <tr><td>Christian Pulisic</td><td>&#x1F1FA;&#x1F1F8; USA</td><td style="text-align:center">2</td></tr>
+      <tr><td>Kevin De Bruyne</td><td>&#x1F1E7;&#x1F1EA; Belgium</td><td style="text-align:center">1</td></tr>
+      <tr><td>Folarin Balogun</td><td>&#x1F1FA;&#x1F1F8; USA</td><td style="text-align:center">1</td></tr>
+    </table>
+  </div>
+  <div class="prediction-banner">
+    &#x26BD; <strong>Kickoff: 8:00 PM ET &middot; Lumen Field, Seattle</strong><br>
+    Belgium's golden generation faces a spirited USMNT on home soil. Can Pochettino's men reach the quarterfinals for the first time since 2002?<br>
+    <strong style="color:#fcd116;">Prediction: Belgium 2-1 USA &middot; AET</strong>
+  </div>
+  <div class="disclaimer">
+    Predicted lineups based on latest team news as of July 6, 2026. Player ratings from EA FC 26. Salaries are annual figures from public reports. Match details subject to change.
+  </div>
 </div>
 </body>
 </html>
