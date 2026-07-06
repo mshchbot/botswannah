@@ -48,15 +48,20 @@
     text-transform:uppercase;letter-spacing:0.5px;
     padding:3px 12px;border-radius:12px;
   }
+  .badge-upcoming{
+    background:rgba(252,209,22,0.12);
+    color:#fcd116;
+    border:1px solid rgba(252,209,22,0.2);
+  }
   .badge-today{
     background:rgba(74,222,128,0.12);
     color:#4ade80;
     border:1px solid rgba(74,222,128,0.2);
   }
   .badge-tomorrow{
-    background:rgba(252,209,22,0.12);
-    color:#fcd116;
-    border:1px solid rgba(252,209,22,0.2);
+    background:rgba(96,165,250,0.12);
+    color:#60a5fa;
+    border:1px solid rgba(96,165,250,0.2);
   }
 </style>
 </head>
@@ -64,6 +69,28 @@
 <div class="container">
   <h1>🏆 Botswannah</h1>
   <p class="subtitle">World Cup 2026 — Match Analysis</p>
+
+  <div class="day-section">
+    <div class="day-label">🏆 Quarterfinals — Upcoming</div>
+    <div class="links">
+      <a href="france-vs-morocco.html" class="link-card">
+        <div class="flags">🇫🇷🇲🇦</div>
+        <div class="text">
+          <div class="matchup">France vs Morocco</div>
+          <div class="stage">Quarterfinal · Gillette Stadium, Foxborough · Thu, Jul 9 · 4:00 PM ET</div>
+        </div>
+        <span class="badge badge-upcoming">Upcoming</span>
+      </a>
+      <a href="norway-vs-england.html" class="link-card">
+        <div class="flags">🇳🇴🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="text">
+          <div class="matchup">Norway vs England</div>
+          <div class="stage">Quarterfinal · Hard Rock Stadium, Miami · Sat, Jul 11 · 5:00 PM ET</div>
+        </div>
+        <span class="badge badge-upcoming">Upcoming</span>
+      </a>
+    </div>
+  </div>
 
   <div class="day-section">
     <div class="day-label">📅 Today — Mon, Jul 6</div>
