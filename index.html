@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botswannah -- Match Analyses</title>
+<title>Botswannah - Today's Matches</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{
@@ -12,123 +12,65 @@
     font-family:-apple-system,BlinkMacSystem,'Segoe UI',Roboto,Oxygen,sans-serif;
     line-height:1.6;
     min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
-  .container{max-width:900px;margin:0 auto;padding:32px 20px}
-  header{
-    text-align:center;
-    padding:40px 20px 32px;
-    background:linear-gradient(135deg,#0d1b3e,#1a2d5e);
-    border-radius:20px;
-    margin-bottom:32px;
-    border:1px solid rgba(255,255,255,0.06);
-  }
-  header .logo{font-size:42px;margin-bottom:8px}
-  header h1{font-size:28px;font-weight:800;color:#fcd116;letter-spacing:1px}
-  header p{color:#94a3b8;font-size:15px;margin-top:6px}
-  .section-title{
-    font-size:18px;font-weight:700;margin-bottom:16px;
-    display:flex;align-items:center;gap:8px;padding-left:4px;
-  }
-  .section-title .icon{font-size:20px}
-  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
-  .match-card{
+  .container{max-width:500px;padding:32px 20px;width:100%}
+  .title{font-size:18px;font-weight:700;color:#fcd116;margin-bottom:20px;text-align:center}
+  .links{display:flex;flex-direction:column;gap:12px}
+  .link-card{
     background:linear-gradient(135deg,#0f1a2e,#162240);
-    border-radius:16px;
-    padding:20px;
+    border-radius:12px;
+    padding:16px 20px;
     border:1px solid rgba(255,255,255,0.06);
-    transition:transform 0.2s,box-shadow 0.2s;
-    cursor:pointer;
     text-decoration:none;
     color:inherit;
-    display:block;
+    transition:transform 0.2s,border-color 0.2s;
+    display:flex;
+    align-items:center;
+    gap:12px;
   }
-  .match-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  .link-card:hover{
+    transform:translateY(-2px);
     border-color:rgba(252,209,22,0.3);
   }
-  .match-card .flags{font-size:32px;margin-bottom:6px;letter-spacing:4px}
-  .match-card .matchup{font-size:16px;font-weight:700;margin-bottom:2px}
-  .match-card .stage{font-size:13px;color:#94a3b8;margin-bottom:8px}
-  .match-card .badge{
+  .link-card .flags{font-size:28px}
+  .link-card .text{flex:1}
+  .link-card .matchup{font-size:16px;font-weight:700}
+  .link-card .stage{font-size:13px;color:#94a3b8}
+  .badge{
     display:inline-block;
     font-size:11px;font-weight:600;
     text-transform:uppercase;letter-spacing:0.5px;
     padding:3px 12px;border-radius:12px;
-    background:rgba(252,209,22,0.12);
-    color:#fcd116;
-    border:1px solid rgba(252,209,22,0.2);
-  }
-  .match-card .badge.ro16{background:rgba(248,113,113,0.12);color:#f87171;border-color:rgba(248,113,113,0.2)}
-  .match-card .badge.qf{background:rgba(96,165,250,0.12);color:#60a5fa;border-color:rgba(96,165,250,0.2)}
-  .match-card .badge.gs{background:rgba(74,222,128,0.12);color:#4ade80;border-color:rgba(74,222,128,0.2)}
-  footer{
-    text-align:center;
-    padding:20px;
-    font-size:13px;
-    color:#64748b;
-    border-top:1px solid rgba(255,255,255,0.05);
-    margin-top:40px;
-  }
-  footer a{color:#60a5fa;text-decoration:none}
-  footer a:hover{text-decoration:underline}
-  @media(max-width:600px){
-    .match-grid{grid-template-columns:1fr}
-    header{padding:28px 16px 24px}
-    header h1{font-size:22px}
+    background:rgba(74,222,128,0.12);
+    color:#4ade80;
+    border:1px solid rgba(74,222,128,0.2);
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="logo">🎍</div>
-    <h1>Botswannah</h1>
-    <p>World Cup 2026 Match Analyses</p>
-  </header>
-  <div class="section-title">
-    <span class="icon">📊</span> Match Analyses
-  </div>
-  <div class="match-grid">
-    <a href="spain-vs-portugal.html" class="match-card">
-      <div class="flags">🏨🏹</div>
-      <div class="matchup">Spain vs Portugal</div>
-      <div class="stage">Round of 16 · AT&T Stadium, Arlington</div>
-      <span class="badge ro16">Round of 16</span>
+  <div class="title">Today’s Matches •• July 6, 2026</div>
+  <div class="links">
+    <a href="spain-vs-portugal.html" class="link-card">
+      <div class="flags">🏷🏹</div>
+      <div class="text">
+        <div class="matchup">Spain vs Portugal</div>
+        <div class="stage">Round of 16 ·AT&T Stadium, Arlington</div>
+      </div>
+      <span class="badge">Today</span>
     </a>
-    <a href="mexico-vs-england.html" class="match-card">
-      <div class="flags">🏻�����🇨️🏧🏧🇧️</div>
-      <div class="matchup">Mexico vs England</div>
-      <div class="stage">Group Stage</div>
-      <span class="badge gs">Group Stage</span>
-    </a>
-    <a href="brazil-vs-norway.html" class="match-card">
-      <div class="flags">🏷🋽</div>
-      <div class="matchup">Brazil vs Norway</div>
-      <div class="stage">Group Stage</div>
-      <span class="badge gs">Group Stage</span>
-    </a>
-    <a href="belgium-vs-usa.html" class="match-card">
-      <div class="flags">🇧🇺</div>
-      <div class="matchup">Belgium vs USA</div>
-      <div class="stage">Group Stage</div>
-      <span class="badge gs">Group Stage</span>
+    <a href="belgium-vs-usa.html" class="link-card">
+      <div class="flags">🇪🔼</div>
+      <div class="text">
+        <div class="matchup">Belgium vs USA</div>
+        <div class="stage">Group Stage</div>
+      </div>
+      <span class="badge">Today</span>
     </a>
   </div>
-  <div style="background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.06);margin-bottom:20px">
-    <div style="font-size:14px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px">
-      <span>ℼ️</span> About
-    </div>
-    <p style="font-size:13px;color:#94a3b8">
-      World Cup 2026 match breakdowns with squad lineups, player ratings,
-      salary comparisons, and key stats — built from scratch and hosted on GitHub Pages.
-    </p>
-  </div>
-  <footer>
-    <a href="https://github.com/mshchnot">mshchbot</a> · 
-    <a href="https://github.com/mshchbot/botswannah">botswannah repo</a> · 
-    FIFA World Cup 2026₅
-  </footer>
 </div>
 </body>
 </html>
