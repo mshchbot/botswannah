@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switzerland vs Colombia — World Cup 2026 Round of 16</title>
+<style>
+  :root{--cool:#2ecc71;--warm:#f1c40f;--hot:#e74c3c;--dark:#0a0e17;--card:#0f1a2e;--border:rgba(255,255,255,0.06)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--dark);color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;line-height:1.5;padding:16px}
+  .container{max-width:1200px;margin:0 auto}
+  .tournament-header{text-align:center;padding:24px 16px 16px;background:linear-gradient(135deg,#0d1b3e,#1a2d5e);border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
+  .tournament-header .trophy{font-size:28px;margin-bottom:4px}
+  .tournament-header h1{font-size:18px;font-weight:700;color:#fcd116;text-transform:uppercase;letter-spacing:2px}
+  .tournament-header .stage{font-size:14px;color:#94a3b8;margin-top:4px}
+  .tournament-header .venue{margin-top:6px;font-size:13px;color:#64748b}
+  .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:16px;padding:24px 16px;margin-bottom:20px;border:1px solid var(--border)}
+  .team-score{text-align:center}
+  .team-score .flag{font-size:48px;display:block;margin-bottom:4px}
+  .team-score .name{font-size:16px;font-weight:700;display:block}
+  .team-score .rank{font-size:12px;color:#94a3b8;display:block;margin-top:2px}
+  .team-score .color-bar{height:4px;border-radius:2px;margin:8px auto 0;width:48px}
+  .sui-bar{background:#e22726}
+  .col-bar{background:#fcd116}
+  .center-col{text-align:center}
+  .center-col .score{font-size:42px;font-weight:800;letter-spacing:4px;color:#fff}
+  .center-col .status{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#fcd116;padding:4px 12px;border-radius:20px;background:rgba(252,209,22,0.12);border:1px solid rgba(252,209,22,0.25)}
+  .center-col .status .live-dot{width:8px;height:8px;border-radius:50%;background:#fcd116;animation:pulse 1.5s infinite}
+  @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-left:4px;color:#fff}
+  .section-title .icon{font-size:22px}
+  .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  .comp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
+  .comp-card h3{font-size:14px;font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8}
+  .comp-card .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+  .comp-card .stat:last-child{border-bottom:0}
+  .comp-card .stat .label{color:#94a3b8}
+  .comp-card .stat .value{font-weight:600}
+  .comp-card.sui .stat .value{color:#f87171}
+  .comp-card.col .stat .value{color:#fcd116}
+  .starting-xis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .xi-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);overflow:hidden}
+  .xi-card .xi-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .xi-card .xi-header .xi-flag{font-size:28px}
+  .xi-card .xi-header .xi-name{font-size:16px;font-weight:700}
+  .xi-card .xi-header .xi-form{font-size:12px;color:#94a3b8;background:rgba(255,255,255,0.05);padding:2px 10px;border-radius:10px;margin-left:auto}
+  .xi-card .player-row{display:grid;grid-template-columns:28px 26px 1fr auto auto;align-items:center;gap:8px;padding:7px 4px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}
+  .xi-card .player-row:last-child{border-bottom:0}
+  .xi-card .player-row .num{font-weight:700;color:#94a3b8;text-align:center;font-size:12px;width:22px}
+  .xi-card .player-row .pos{font-size:10px;color:#64748b;font-weight:600;width:22px;text-transform:uppercase;text-align:center}
+  .xi-card .player-row .pname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:#fff}
+  .xi-card .player-row .pclub{font-size:11px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+  .badge-rating{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:26px;padding:2px 14px;border-radius:20px;font-weight:700;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.25);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;letter-spacing:0.4px;white-space:nowrap}
+  .badge-rating::before{content:"\2605";font-size:10px;margin-right:4px;opacity:0.8}
+  .badge-salary{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:26px;padding:2px 14px;border-radius:20px;font-weight:600;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.2);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;white-space:nowrap}
+  .badge-salary::before{content:"$";font-size:10px;margin-right:3px;opacity:0.7}
+  .s-hi{background:var(--cool)}
+  .s-md{background:var(--warm)}
+  .s-lo{background:var(--hot)}
+  .key-players{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+  .kp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center}
+  .kp-card .kp-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 8px}
+  .kp-card .kp-name{font-size:14px;font-weight:700;color:#fff}
+  .kp-card .kp-pos{font-size:11px;color:#94a3b8;margin-top:2px}
+  .kp-card .kp-club{font-size:11px;color:#64748b;margin-top:1px}
+  .kp-card .kp-stats{display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .squads-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .squad-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
+  .squad-card .sq-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .squad-card .sq-header .sq-flag{font-size:24px}
+  .squad-card .sq-header .sq-name{font-size:15px;font-weight:700;color:#fff}
+  .squad-card .sq-header .sq-count{font-size:12px;color:#94a3b8;margin-left:auto}
+  .squad-player{display:grid;grid-template-columns:26px 26px 1fr auto;align-items:center;gap:6px;padding:5px 2px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px}
+  .squad-player:last-child{border-bottom:0}
+  .squad-player .sq-num{font-weight:700;color:#64748b;text-align:center;font-size:11px}
+  .squad-player .sq-pos{font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;text-align:center}
+  .squad-player .sq-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#e8e8e8}
+  .squad-player .sq-club{font-size:10px;color:#94a3b8;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .match-details{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  .md-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:12px;padding:12px;text-align:center;border:1px solid var(--border)}
+  .md-card .md-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px}
+  .md-card .md-value{font-size:13px;font-weight:600;margin-top:4px;color:#fff}
+  .h2h-section{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:20px;text-align:center;border:1px solid var(--border);margin-bottom:24px}
+  .h2h-section .h2h-record{font-size:32px;font-weight:900;color:#fff}
+  .h2h-section .h2h-detail{color:#94a3b8;font-size:14px;margin-top:6px}
+  .h2h-section .h2h-note{color:#64748b;font-size:13px;margin-top:4px}
+  .prediction-banner{background:linear-gradient(135deg,#e2272622,#fcd11622);border:1px solid #fcd116;border-radius:16px;padding:20px;text-align:center;margin:20px 0;font-size:16px;color:#fff;line-height:1.6}
+  .disclaimer{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 16px;font-size:11px;color:#64748b;text-align:center;margin-top:20px;line-height:1.6}
+  .golden-boot{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);margin-bottom:24px}
+  .golden-boot table{width:100%;border-collapse:collapse;font-size:13px}
+  .golden-boot th{text-align:left;padding:10px 12px;border-bottom:2px solid #fcd116;color:#fcd116;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .golden-boot td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#e8e8e8}
+  .golden-boot td:last-child{text-align:center;font-weight:700}
+  @media print{body{background:#fff!important;color:#111!important}.tournament-header,.scoreboard,.comp-card,.xi-card,.kp-card,.squad-card,.md-card,.h2h-section,.golden-boot,.prediction-banner{background:#f5f5f5!important;border-color:#ddd!important;box-shadow:none!important}.badge-rating,.badge-salary{box-shadow:none!important;border-color:#ccc!important;color:#111!important;text-shadow:none!important}.section-title{color:#111!important}}
+  @media(max-width:768px){.starting-xis,.squads-grid{grid-template-columns:1fr}.key-players{grid-template-columns:1fr 1fr}.match-details{grid-template-columns:1fr 1fr}.comparison{grid-template-columns:1fr}.scoreboard{padding:16px 12px}.team-score .flag{font-size:36px}.center-col .score{font-size:32px}}
+  @media(max-width:480px){body{padding:8px}.tournament-header h1{font-size:15px}.key-players{grid-template-columns:1fr 1fr}.kp-card .kp-avatar{width:40px;height:40px;font-size:15px}.team-score .flag{font-size:28px}.center-col .score{font-size:26px}.xi-card .player-row .pclub{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="tournament-header">
+    <div class="trophy">🏆</div>
+    <h1>FIFA World Cup 2026™</h1>
+    <div class="stage">Round of 16 · Match 96</div>
+    <div class="venue">📍 BC Place · Vancouver, BC · Tue Jul 7, 2026 · 4:00 PM ET</div>
+  </div>
+  <div class="scoreboard">
+    <div class="team-score">
+      <span class="flag">🇨🇭</span>
+      <span class="name" style="color:#f87171">Switzerland</span>
+      <span class="rank">FIFA #15 · Group D Runners-up</span>
+      <div class="color-bar sui-bar"></div>
+    </div>
+    <div class="center-col">
+      <div class="score">VS</div>
+      <div class="status"><span class="live-dot"></span> Tomorrow</div>
+    </div>
+    <div class="team-score">
+      <span class="flag">🇨🇴</span>
+      <span class="name" style="color:#fcd116">Colombia</span>
+      <span class="rank">FIFA #12 · Group C Runners-up</span>
+      <div class="color-bar col-bar"></div>
+    </div>
+  </div>
+  <div class="match-details">
+    <div class="md-card"><div class="md-label">Date</div><div class="md-value">Tue, Jul 7</div></div>
+    <div class="md-card"><div class="md-label">Kickoff</div><div class="md-value">4:00 PM ET</div></div>
+    <div class="md-card"><div class="md-label">Venue</div><div class="md-value">BC Place, Vancouver</div></div>
+    <div class="md-card"><div class="md-label">Broadcast</div><div class="md-value">FS1 · Univision</div></div>
+  </div>
+  <div class="section-title"><span class="icon">📊</span> Team Comparison</div>
+  <div class="comparison">
+    <div class="comp-card sui">
+      <h3>🇨🇭 Switzerland</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#15</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group D Runners-up (W1 D2)</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat Nigeria 1-0</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">4</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">2</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">Quarterfinals (1934, 1938, 1954)</span></div>
+    </div>
+    <div class="comp-card col">
+      <h3>🇨🇴 Colombia</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#12</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group C Runners-up (W2 L1)</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat Denmark 3-1</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">7</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">4</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">Quarterfinals (2014)</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚽</span> Predicted Starting XIs</div>
+  <div class="starting-xis">
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">🇨🇭</span><span class="xi-name">Switzerland</span><span class="xi-form">3-4-3 / 4-2-3-1</span></div>
+      <div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">Y. Sommer</span><span class="pclub">Inter Milan</span><span class="badge-rating s-hi">85</span></div>
+      <div class="player-row"><span class="num">22</span><span class="pos">CB</span><span class="pname">M. Akanji</span><span class="pclub">Manchester City</span><span class="badge-rating s-hi">86</span></div>
+      <div class="player-row"><span class="num">4</span><span class="pos">CB</span><span class="pname">N. Elvedi</span><span class="pclub">M'gladbach</span><span class="badge-rating s-md">81</span></div>
+      <div class="player-row"><span class="num">13</span><span class="pos">CB</span><span class="pname">R. Rodriguez</span><span class="pclub">Torino</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">3</span><span class="pos">RWB</span><span class="pname">S. Widmer</span><span class="pclub">Mainz</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">R. Freuler</span><span class="pclub">Bologna</span><span class="badge-rating s-md">81</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">CM</span><span class="pname">G. Xhaka (c)</span><span class="pclub">Bayer Leverkusen</span><span class="badge-rating s-hi">86</span></div>
+      <div class="player-row"><span class="num">20</span><span class="pos">LWB</span><span class="pname">M. Aebischer</span><span class="pclub">Bologna</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">23</span><span class="pos">RW</span><span class="pname">X. Shaqiri</span><span class="pclub">Chicago Fire</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">7</span><span class="pos">ST</span><span class="pname">B. Embolo</span><span class="pclub">Monaco</span><span class="badge-rating s-md">82</span></div>
+      <div class="player-row"><span class="num">19</span><span class="pos">LW</span><span class="pname">D. Ndoye</span><span class="pclub">Bologna</span><span class="badge-rating s-md">78</span></div>
+    </div>
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">🇨🇴</span><span class="xi-name">Colombia</span><span class="xi-form">4-3-3</span></div>
+      <div class="player-row"><span class="num">1</span><span class="pos">GK</span><span class="pname">C. Vargas</span><span class="pclub">Atlas</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">18</span><span class="pos">RB</span><span class="pname">D. Muñoz</span><span class="pclub">Crystal Palace</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">14</span><span class="pos">CB</span><span class="pname">C. Cuesta</span><span class="pclub">Genk</span><span class="badge-rating s-md">78</span></div>
+      <div class="player-row"><span class="num">23</span><span class="pos">CB</span><span class="pname">D. Sánchez</span><span class="pclub">Galatasaray</span><span class="badge-rating s-md">79</span></div>
+      <div class="player-row"><span class="num">17</span><span class="pos">LB</span><span class="pname">J. Mojica</span><span class="pclub">Villarreal</span><span class="badge-rating s-md">77</span></div>
+      <div class="player-row"><span class="num">6</span><span class="pos">CDM</span><span class="pname">K. Osorio</span><span class="pclub">Atletico Nacional</span><span class="badge-rating s-md">76</span></div>
+      <div class="player-row"><span class="num">11</span><span class="pos">CM</span><span class="pname">J. Arias</span><span class="pclub">Fluminense</span><span class="badge-rating s-md">80</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">AM</span><span class="pname">James Rodríguez</span><span class="pclub">São Paulo</span><span class="badge-rating s-md">83</span></div>
+      <div class="player-row"><span class="num">7</span><span class="pos">LW</span><span class="pname">L. Díaz (c)</span><span class="pclub">Liverpool</span><span class="badge-rating s-hi">86</span></div>
+      <div class="player-row"><span class="num">9</span><span class="pos">ST</span><span class="pname">R. Borré</span><span class="pclub">Internacional</span><span class="badge-rating s-md">81</span></div>
+      <div class="player-row"><span class="num">19</span><span class="pos">RW</span><span class="pname">J. Asprilla</span><span class="pclub">Watford</span><span class="badge-rating s-md">77</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⭐</span> Key Players</div>
+  <div class="key-players">
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">GX</div><div class="kp-name">Granit Xhaka</div><div class="kp-pos">Captain · Switzerland</div><div class="kp-club">Bayer Leverkusen</div><div class="kp-stats"><span class="badge-rating s-hi">86</span><span class="badge-salary s-md">$8.2M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">MA</div><div class="kp-name">M. Akanji</div><div class="kp-pos">Defender · Switzerland</div><div class="kp-club">Manchester City</div><div class="kp-stats"><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$12.5M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#fcd116,#ff8c00)">LD</div><div class="kp-name">Luis Díaz</div><div class="kp-pos">Captain · Colombia</div><div class="kp-club">Liverpool</div><div class="kp-stats"><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$11.5M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#fcd116,#ff8c00)">JR</div><div class="kp-name">James Rodríguez</div><div class="kp-pos">Playmaker · Colombia</div><div class="kp-club">São Paulo</div><div class="kp-stats"><span class="badge-rating s-md">83</span><span class="badge-salary s-md">$6.8M</span></div></div>
+  </div>
+  <div class="section-title"><span class="icon">📋</span> Full Squads</div>
+  <div class="squads-grid">
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">🇨🇭</span><span class="sq-name">Switzerland</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">Yann Sommer</span><span class="sq-club">Inter Milan</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">K. Mbabu</span><span class="sq-club">Fulham</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">S. Widmer</span><span class="sq-club">Mainz</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">DF</span><span class="sq-name">N. Elvedi</span><span class="sq-club">M'gladbach</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">DF</span><span class="sq-name">M. Akanji</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">MF</span><span class="sq-name">D. Zakaria</span><span class="sq-club">Monaco</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">B. Embolo</span><span class="sq-club">Monaco</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">R. Freuler</span><span class="sq-club">Bologna</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">N. Okafor</span><span class="sq-club">AC Milan</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">MF</span><span class="sq-name">G. Xhaka (c)</span><span class="sq-club">Bayer Leverkusen</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">FW</span><span class="sq-name">R. Steffen</span><span class="sq-club">Stuttgart</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">Y. Mvogo</span><span class="sq-club">Lorient</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">DF</span><span class="sq-name">R. Rodriguez</span><span class="sq-club">Torino</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">MF</span><span class="sq-name">M. Aebischer</span><span class="sq-club">Bologna</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">MF</span><span class="sq-name">A. Jashari</span><span class="sq-club">FC Luzern</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">MF</span><span class="sq-name">B. Berisha</span><span class="sq-club">FC Augsburg</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">DF</span><span class="sq-name">U. Garcia</span><span class="sq-club">Bayer Leverkusen</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">FW</span><span class="sq-name">C. Itten</span><span class="sq-club">Young Boys</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">FW</span><span class="sq-name">D. Ndoye</span><span class="sq-club">Bologna</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">MF</span><span class="sq-name">F. Rieder</span><span class="sq-club">Rennes</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">GK</span><span class="sq-name">M. Kobel</span><span class="sq-club">Dortmund</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">DF</span><span class="sq-name">E. Camara</span><span class="sq-club">Servette</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">FW</span><span class="sq-name">X. Shaqiri</span><span class="sq-club">Chicago Fire</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">MF</span><span class="sq-name">F. Souza</span><span class="sq-club">Grasshoppers</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">FW</span><span class="sq-name">K. Amougou</span><span class="sq-club">Basel</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">DF</span><span class="sq-name">B. Omeragic</span><span class="sq-club">Montpellier</span></div>
+    </div>
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">🇨🇴</span><span class="sq-name">Colombia</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">C. Vargas</span><span class="sq-club">Atlas</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">C. Cuesta</span><span class="sq-club">Genk</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">J. Lucumí</span><span class="sq-club">Bologna</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">DF</span><span class="sq-name">Y. Mosquera</span><span class="sq-club">Wolverhampton</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">MF</span><span class="sq-name">W. Barrios</span><span class="sq-club">Zenit</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">MF</span><span class="sq-name">K. Osorio</span><span class="sq-club">Atletico Nacional</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">L. Díaz (c)</span><span class="sq-club">Liverpool</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">J. Carrascal</span><span class="sq-club">Dynamo Moscow</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">R. Borré</span><span class="sq-club">Internacional</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">MF</span><span class="sq-name">James Rodríguez</span><span class="sq-club">São Paulo</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">MF</span><span class="sq-name">J. Arias</span><span class="sq-club">Fluminense</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">K. Mier</span><span class="sq-club">Deportivo Cali</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">DF</span><span class="sq-name">Y. Mina</span><span class="sq-club">Cagliari</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">FW</span><span class="sq-name">J. Durán</span><span class="sq-club">Aston Villa</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">FW</span><span class="sq-name">M. Borja</span><span class="sq-club">River Plate</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">DF</span><span class="sq-name">S. Arias</span><span class="sq-club">Bahia</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">DF</span><span class="sq-name">J. Mojica</span><span class="sq-club">Villarreal</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">DF</span><span class="sq-name">D. Muñoz</span><span class="sq-club">Crystal Palace</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">FW</span><span class="sq-name">J. Asprilla</span><span class="sq-club">Watford</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">MF</span><span class="sq-name">I. Pabón</span><span class="sq-club">Atletico Nacional</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">MF</span><span class="sq-name">G. Gómez</span><span class="sq-club">Libertad</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">GK</span><span class="sq-name">J. Ospina</span><span class="sq-club">Al Nassr</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">DF</span><span class="sq-name">D. Sánchez</span><span class="sq-club">Galatasaray</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">MF</span><span class="sq-name">N. Rincón</span><span class="sq-club">Racing Club</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">DF</span><span class="sq-name">A. Muñoz</span><span class="sq-club">Cruz Azul</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">MF</span><span class="sq-name">D. Giraldo</span><span class="sq-club">América de Cali</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚔️</span> Head to Head</div>
+  <div class="h2h-section">
+    <div class="h2h-record">Switzerland 1 – 1 Colombia</div>
+    <div class="h2h-detail">2 meetings · Evenly matched historically</div>
+    <div class="h2h-note">Last meeting: 2018 friendly — Switzerland 1-1 Colombia (Rodríguez pen; Seferovic). Their only other match was a 2010 friendly also drawn 1-1.</div>
+  </div>
+  <div class="section-title"><span class="icon">💡</span> Tactical Preview</div>
+  <div class="comparison">
+    <div class="comp-card sui"><h3>🇨🇭 Switzerland's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">3-4-3 / 4-2-3-1</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">Solid defensive block, Xhaka dictates tempo</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Shaqiri's set pieces + Embolo pace</span></div>
+      <div class="stat"><span class="label">Weakness</span><span class="value">Low defensive block vs Díaz's dribbling</span></div>
+    </div>
+    <div class="comp-card col"><h3>🇨🇴 Colombia's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">4-3-3 attacking</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">Wide play through Díaz, James orchestrates</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Díaz 1v1 dribbling, Borré's movement</span></div>
+      <div class="stat"><span class="label">Weakness</span><span class="value">Defensive transitions vs Swiss counter-press</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚡</span> Golden Boot Watch</div>
+  <div class="golden-boot">
+    <table><tr><th>Player</th><th>Team</th><th style="text-align:center">Goals</th></tr>
+      <tr><td>Luis Díaz</td><td>🇨🇴 Colombia</td><td style="text-align:center">3</td></tr>
+      <tr><td>R. Borré</td><td>🇨🇴 Colombia</td><td style="text-align:center">2</td></tr>
+      <tr><td>B. Embolo</td><td>🇨🇭 Switzerland</td><td style="text-align:center">2</td></tr>
+      <tr><td>X. Shaqiri</td><td>🇨🇭 Switzerland</td><td style="text-align:center">1</td></tr>
+      <tr><td>James Rodríguez</td><td>🇨🇴 Colombia</td><td style="text-align:center">1</td></tr>
+    </table>
+  </div>
+  <div class="prediction-banner">
+    ⚽ <strong>Kickoff: 4:00 PM ET · BC Place, Vancouver</strong><br>
+    Two evenly-matched sides with rich World Cup pedigree. Switzerland's defensive solidity meets Colombia's flair in what promises to be a tactical chess match.<br>
+    <strong style="color:#fcd116;">Prediction: Colombia 2-1 Switzerland · AET</strong>
+  </div>
+  <div class="disclaimer">
+    Predicted lineups based on latest team news as of July 6, 2026. Player ratings from EA FC 26. Salaries are annual figures from public reports. Match details subject to change.
+  </div>
+</div>
+</body>
+</html>

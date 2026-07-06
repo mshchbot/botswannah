@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botswannah - Today's Matches</title>
+<title>Botswannah - Match Analysis</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{
@@ -13,11 +13,15 @@
     line-height:1.6;
     min-height:100vh;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:center;
   }
-  .container{max-width:500px;padding:32px 20px;width:100%}
-  .links{display:flex;flex-direction:column;gap:12px}
+  .container{max-width:540px;padding:32px 20px;width:100%}
+  h1{font-size:22px;font-weight:700;color:#fcd116;text-align:center;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.5px}
+  .subtitle{text-align:center;color:#94a3b8;font-size:13px;margin-bottom:28px}
+  .day-section{margin-bottom:20px}
+  .day-label{font-size:13px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-left:4px}
+  .links{display:flex;flex-direction:column;gap:10px}
   .link-card{
     background:linear-gradient(135deg,#0f1a2e,#162240);
     border-radius:12px;
@@ -43,31 +47,66 @@
     font-size:11px;font-weight:600;
     text-transform:uppercase;letter-spacing:0.5px;
     padding:3px 12px;border-radius:12px;
+  }
+  .badge-today{
     background:rgba(74,222,128,0.12);
     color:#4ade80;
     border:1px solid rgba(74,222,128,0.2);
+  }
+  .badge-tomorrow{
+    background:rgba(252,209,22,0.12);
+    color:#fcd116;
+    border:1px solid rgba(252,209,22,0.2);
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="links">
-    <a href="spain-vs-portugal.html" class="link-card">
-      <div class="flags">🇪🇸🇵🇹</div>
-      <div class="text">
-        <div class="matchup">Spain vs Portugal</div>
-        <div class="stage">Round of 16 · AT&T Stadium, Arlington</div>
-      </div>
-      <span class="badge">Today</span>
-    </a>
-    <a href="belgium-vs-usa.html" class="link-card">
-      <div class="flags">🇧🇪🇺🇸</div>
-      <div class="text">
-        <div class="matchup">Belgium vs USA</div>
-        <div class="stage">Round of 16 · Lumen Field, Seattle</div>
-      </div>
-      <span class="badge">Today</span>
-    </a>
+  <h1>🏆 Botswannah</h1>
+  <p class="subtitle">World Cup 2026 — Match Analysis</p>
+
+  <div class="day-section">
+    <div class="day-label">📅 Today — Mon, Jul 6</div>
+    <div class="links">
+      <a href="spain-vs-portugal.html" class="link-card">
+        <div class="flags">🇪🇸🇵🇹</div>
+        <div class="text">
+          <div class="matchup">Spain vs Portugal</div>
+          <div class="stage">Round of 16 · AT&T Stadium, Arlington · 12:00 PM ET</div>
+        </div>
+        <span class="badge badge-today">Today</span>
+      </a>
+      <a href="belgium-vs-usa.html" class="link-card">
+        <div class="flags">🇧🇪🇺🇸</div>
+        <div class="text">
+          <div class="matchup">Belgium vs USA</div>
+          <div class="stage">Round of 16 · Lumen Field, Seattle · 8:00 PM ET</div>
+        </div>
+        <span class="badge badge-today">Today</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">📅 Tomorrow — Tue, Jul 7</div>
+    <div class="links">
+      <a href="egypt-vs-argentina.html" class="link-card">
+        <div class="flags">🇪🇬🇦🇷</div>
+        <div class="text">
+          <div class="matchup">Egypt vs Argentina</div>
+          <div class="stage">Round of 16 · Atlanta Stadium · 12:00 PM ET</div>
+        </div>
+        <span class="badge badge-tomorrow">Tomorrow</span>
+      </a>
+      <a href="switzerland-vs-colombia.html" class="link-card">
+        <div class="flags">🇨🇭🇨🇴</div>
+        <div class="text">
+          <div class="matchup">Switzerland vs Colombia</div>
+          <div class="stage">Round of 16 · BC Place, Vancouver · 4:00 PM ET</div>
+        </div>
+        <span class="badge badge-tomorrow">Tomorrow</span>
+      </a>
+    </div>
   </div>
 </div>
 </body>
