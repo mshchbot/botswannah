@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain vs Belgium — World Cup 2026 Quarterfinal</title>
+<style>
+  :root{--cool:#2ecc71;--warm:#f1c40f;--hot:#e74c3c;--dark:#0a0e17;--card:#0f1a2e;--border:rgba(255,255,255,0.06)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--dark);color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;line-height:1.5;padding:16px}
+  .container{max-width:1200px;margin:0 auto}
+  .tournament-header{text-align:center;padding:24px 16px 16px;background:linear-gradient(135deg,#0d1b3e,#1a2d5e);border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
+  .tournament-header .trophy{font-size:28px;margin-bottom:4px}
+  .tournament-header h1{font-size:18px;font-weight:700;color:#fcd116;text-transform:uppercase;letter-spacing:2px}
+  .tournament-header .stage{font-size:14px;color:#94a3b8;margin-top:4px}
+  .tournament-header .venue{margin-top:6px;font-size:13px;color:#64748b}
+  .scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:16px;padding:24px 16px;margin-bottom:20px;border:1px solid var(--border)}
+  .team-score{text-align:center}
+  .team-score .flag{font-size:48px;display:block;margin-bottom:4px}
+  .team-score .name{font-size:16px;font-weight:700;display:block}
+  .team-score .rank{font-size:12px;color:#94a3b8;display:block;margin-top:2px}
+  .team-score .color-bar{height:4px;border-radius:2px;margin:8px auto 0;width:48px}
+  .esp-bar{background:#c60b1e}
+  .bel-bar{background:#e22726}
+  .center-col{text-align:center}
+  .center-col .score{font-size:42px;font-weight:800;letter-spacing:4px;color:#fff}
+  .center-col .status{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#fcd116;padding:4px 12px;border-radius:20px;background:rgba(252,209,22,0.12);border:1px solid rgba(252,209,22,0.25)}
+  .center-col .status .live-dot{width:8px;height:8px;border-radius:50%;background:#fcd116;animation:pulse 1.5s infinite}
+  @keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-left:4px;color:#fff}
+  .section-title .icon{font-size:22px}
+  .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  .comp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
+  .comp-card h3{font-size:14px;font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8}
+  .comp-card .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+  .comp-card .stat:last-child{border-bottom:0}
+  .comp-card .stat .label{color:#94a3b8}
+  .comp-card .stat .value{font-weight:600}
+  .comp-card.esp .stat .value{color:#f87171}
+  .comp-card.bel .stat .value{color:#e22726}
+  .starting-xis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .xi-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);overflow:hidden}
+  .xi-card .xi-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .xi-card .xi-header .xi-flag{font-size:28px}
+  .xi-card .xi-header .xi-name{font-size:16px;font-weight:700}
+  .xi-card .xi-header .xi-form{font-size:12px;color:#94a3b8;background:rgba(255,255,255,0.05);padding:2px 10px;border-radius:10px;margin-left:auto}
+  .xi-card .player-row{display:grid;grid-template-columns:28px 26px 1fr auto auto auto;align-items:center;gap:8px;padding:7px 4px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}
+  .xi-card .player-row:last-child{border-bottom:0}
+  .xi-card .player-row .num{font-weight:700;color:#94a3b8;text-align:center;font-size:12px;width:22px}
+  .xi-card .player-row .pos{font-size:10px;color:#64748b;font-weight:600;width:22px;text-transform:uppercase;text-align:center}
+  .xi-card .player-row .pname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:#fff}
+  .xi-card .player-row .pclub{font-size:11px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+  .badge-rating{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:26px;padding:2px 14px;border-radius:20px;font-weight:700;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.25);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;letter-spacing:0.4px;white-space:nowrap}
+  .badge-rating::before{content:"\2605";font-size:10px;margin-right:4px;opacity:0.8}
+  .badge-salary{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:26px;padding:2px 14px;border-radius:20px;font-weight:600;font-size:12px;color:#111;text-shadow:0 1px 0 rgba(255,255,255,0.2);box-shadow:0 1px 4px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.12);flex-shrink:0;white-space:nowrap}
+  .badge-salary::before{content:"$";font-size:10px;margin-right:3px;opacity:0.7}
+  .s-hi{background:var(--cool)}
+  .s-md{background:var(--warm)}
+  .s-lo{background:var(--hot)}
+  .key-players{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+  .kp-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center}
+  .kp-card .kp-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 8px}
+  .kp-card .kp-name{font-size:14px;font-weight:700;color:#fff}
+  .kp-card .kp-pos{font-size:11px;color:#94a3b8;margin-top:2px}
+  .kp-card .kp-club{font-size:11px;color:#64748b;margin-top:1px}
+  .kp-card .kp-stats{display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .squads-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .squad-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border)}
+  .squad-card .sq-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .squad-card .sq-header .sq-flag{font-size:24px}
+  .squad-card .sq-header .sq-name{font-size:15px;font-weight:700;color:#fff}
+  .squad-card .sq-header .sq-count{font-size:12px;color:#94a3b8;margin-left:auto}
+  .squad-player{display:grid;grid-template-columns:26px 26px 1fr auto;align-items:center;gap:6px;padding:5px 2px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px}
+  .squad-player:last-child{border-bottom:0}
+  .squad-player .sq-num{font-weight:700;color:#64748b;text-align:center;font-size:11px}
+  .squad-player .sq-pos{font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;text-align:center}
+  .squad-player .sq-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#e8e8e8}
+  .squad-player .sq-club{font-size:10px;color:#94a3b8;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .match-details{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  .md-card{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:12px;padding:12px;text-align:center;border:1px solid var(--border)}
+  .md-card .md-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px}
+  .md-card .md-value{font-size:13px;font-weight:600;margin-top:4px;color:#fff}
+  .h2h-section{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:20px;text-align:center;border:1px solid var(--border);margin-bottom:24px}
+  .h2h-section .h2h-record{font-size:32px;font-weight:900;color:#fff}
+  .h2h-section .h2h-detail{color:#94a3b8;font-size:14px;margin-top:6px}
+  .h2h-section .h2h-note{color:#64748b;font-size:13px;margin-top:4px}
+  .prediction-banner{background:linear-gradient(135deg,#c60b1e22,#e2272622);border:1px solid #fcd116;border-radius:16px;padding:20px;text-align:center;margin:20px 0;font-size:16px;color:#fff;line-height:1.6}
+  .disclaimer{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 16px;font-size:11px;color:#64748b;text-align:center;margin-top:20px;line-height:1.6}
+  .golden-boot{background:linear-gradient(135deg,#0f1a2e,#162240);border-radius:14px;padding:16px;border:1px solid var(--border);margin-bottom:24px}
+  .golden-boot table{width:100%;border-collapse:collapse;font-size:13px}
+  .golden-boot th{text-align:left;padding:10px 12px;border-bottom:2px solid #fcd116;color:#fcd116;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .golden-boot td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:#e8e8e8}
+  .golden-boot td:last-child{text-align:center;font-weight:700}
+  @media print{body{background:#fff!important;color:#111!important}.tournament-header,.scoreboard,.comp-card,.xi-card,.kp-card,.squad-card,.md-card,.h2h-section,.golden-boot,.prediction-banner{background:#f5f5f5!important;border-color:#ddd!important;box-shadow:none!important}.badge-rating,.badge-salary{box-shadow:none!important;border-color:#ccc!important;color:#111!important;text-shadow:none!important}.section-title{color:#111!important}}
+  @media(max-width:768px){.starting-xis,.squads-grid{grid-template-columns:1fr}.key-players{grid-template-columns:1fr 1fr}.match-details{grid-template-columns:1fr 1fr}.comparison{grid-template-columns:1fr}.scoreboard{padding:16px 12px}.team-score .flag{font-size:36px}.center-col .score{font-size:32px}}
+  @media(max-width:480px){body{padding:8px}.tournament-header h1{font-size:15px}.key-players{grid-template-columns:1fr 1fr}.kp-card .kp-avatar{width:40px;height:40px;font-size:15px}.team-score .flag{font-size:28px}.center-col .score{font-size:26px}.xi-card .player-row .pclub{display:none}.kp-card .kp-stats{flex-wrap:nowrap;gap:4px}.badge-rating,.badge-salary{min-width:auto;font-size:10px;padding:2px 8px;height:22px}.badge-rating::before,.badge-salary::before{font-size:8px;margin-right:2px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="tournament-header">
+    <div class="trophy">🏆</div>
+    <h1>FIFA World Cup 2026™</h1>
+    <div class="stage">Quarterfinal · Match 98 · European Heavyweights Collide</div>
+    <div class="venue">📍 SoFi Stadium · Inglewood, CA · Fri, Jul 10, 2026 · 3:00 PM ET</div>
+  </div>
+  <div class="scoreboard">
+    <div class="team-score">
+      <span class="flag">🇪🇸</span>
+      <span class="name" style="color:#f87171">Spain</span>
+      <span class="rank">FIFA #2 · Group H Winners · Unbeaten all tournament</span>
+      <div class="color-bar esp-bar"></div>
+    </div>
+    <div class="center-col">
+      <div class="score">VS</div>
+      <div class="status">🕐 UPCOMING</div>
+    </div>
+    <div class="team-score">
+      <span class="flag">🇧🇪</span>
+      <span class="name" style="color:#e22726">Belgium</span>
+      <span class="rank">FIFA #9 · Group G Winners · Knocked out hosts USA</span>
+      <div class="color-bar bel-bar"></div>
+    </div>
+  </div>
+  <div class="match-details">
+    <div class="md-card"><div class="md-label">Date</div><div class="md-value">Fri, Jul 10</div></div>
+    <div class="md-card"><div class="md-label">Kickoff</div><div class="md-value">3:00 PM ET</div></div>
+    <div class="md-card"><div class="md-label">Venue</div><div class="md-value">SoFi Stadium, Inglewood</div></div>
+    <div class="md-card"><div class="md-label">Broadcast</div><div class="md-value">Fox · Telemundo</div></div>
+  </div>
+  <div class="section-title"><span class="icon">📊</span> Team Comparison</div>
+  <div class="comparison">
+    <div class="comp-card esp"><h3>🇪🇸 Spain</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#2</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group H Winners (W2 D1)</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat Austria 3-0</span></div>
+      <div class="stat"><span class="label">Round of 16</span><span class="value">Beat Portugal 1-0</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">9</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">0</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">Winners (2010)</span></div>
+    </div>
+    <div class="comp-card bel"><h3>🇧🇪 Belgium</h3>
+      <div class="stat"><span class="label">FIFA Ranking</span><span class="value">#9</span></div>
+      <div class="stat"><span class="label">Group Stage</span><span class="value">Group G Winners (W1 D2)</span></div>
+      <div class="stat"><span class="label">Round of 32</span><span class="value">Beat Senegal 3-2 AET</span></div>
+      <div class="stat"><span class="label">Round of 16</span><span class="value">Beat USA 4-1</span></div>
+      <div class="stat"><span class="label">Tournament Goals</span><span class="value">13</span></div>
+      <div class="stat"><span class="label">Goals Conceded</span><span class="value">5</span></div>
+      <div class="stat"><span class="label">Best Finish</span><span class="value">3rd (2018)</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚽</span> Predicted Starting XIs</div>
+  <div class="starting-xis">
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">🇪🇸</span><span class="xi-name">Spain</span><span class="xi-form">4-3-3</span></div>
+      <div class="player-row"><span class="num">23</span><span class="pos">GK</span><span class="pname">U. Simon</span><span class="pclub">Athletic Club</span><span class="badge-rating s-hi">87</span><span class="badge-salary s-md">$4.2M</span></div>
+      <div class="player-row"><span class="num">22</span><span class="pos">RB</span><span class="pname">P. Porro</span><span class="pclub">Tottenham</span><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$5.8M</span></div>
+      <div class="player-row"><span class="num">5</span><span class="pos">CB</span><span class="pname">P. Cubarsi</span><span class="pclub">Barcelona</span><span class="badge-rating s-md">83</span><span class="badge-salary s-md">$3.5M</span></div>
+      <div class="player-row"><span class="num">14</span><span class="pos">CB</span><span class="pname">A. Laporte</span><span class="pclub">Al-Nassr</span><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$16.2M</span></div>
+      <div class="player-row"><span class="num">24</span><span class="pos">LB</span><span class="pname">M. Cucurella</span><span class="pclub">Chelsea</span><span class="badge-rating s-md">82</span><span class="badge-salary s-md">$5.2M</span></div>
+      <div class="player-row"><span class="num">16</span><span class="pos">DM</span><span class="pname">Rodri</span><span class="pclub">Manchester City</span><span class="badge-rating s-hi">91</span><span class="badge-salary s-hi">$18.7M</span></div>
+      <div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">Pedri</span><span class="pclub">Barcelona</span><span class="badge-rating s-hi">87</span><span class="badge-salary s-hi">$12.5M</span></div>
+      <div class="player-row"><span class="num">6</span><span class="pos">CM</span><span class="pname">M. Merino</span><span class="pclub">Real Sociedad</span><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$4.5M</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">RW</span><span class="pname">D. Olmo</span><span class="pclub">Barcelona</span><span class="badge-rating s-hi">85</span><span class="badge-salary s-md">$8.5M</span></div>
+      <div class="player-row"><span class="num">19</span><span class="pos">LW</span><span class="pname">L. Yamal</span><span class="pclub">Barcelona</span><span class="badge-rating s-hi">86</span><span class="badge-salary s-md">$6.3M</span></div>
+      <div class="player-row"><span class="num">21</span><span class="pos">ST</span><span class="pname">M. Oyarzabal</span><span class="pclub">Real Sociedad</span><span class="badge-rating s-hi">85</span><span class="badge-salary s-md">$6.2M</span></div>
+    </div>
+    <div class="xi-card">
+      <div class="xi-header"><span class="xi-flag">🇧🇪</span><span class="xi-name">Belgium</span><span class="xi-form">4-3-3</span></div>
+      <div class="player-row"><span class="num">12</span><span class="pos">GK</span><span class="pname">T. Courtois</span><span class="pclub">Real Madrid</span><span class="badge-rating s-hi">91</span><span class="badge-salary s-hi">$12.5M</span></div>
+      <div class="player-row"><span class="num">21</span><span class="pos">RB</span><span class="pname">T. Castagne</span><span class="pclub">Fulham</span><span class="badge-rating s-md">81</span><span class="badge-salary s-md">$3.2M</span></div>
+      <div class="player-row"><span class="num">4</span><span class="pos">CB</span><span class="pname">B. Mechele</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">79</span><span class="badge-salary s-lo">$1.8M</span></div>
+      <div class="player-row"><span class="num">3</span><span class="pos">CB</span><span class="pname">A. Theate</span><span class="pclub">Rennes</span><span class="badge-rating s-md">80</span><span class="badge-salary s-md">$2.2M</span></div>
+      <div class="player-row"><span class="num">5</span><span class="pos">LB</span><span class="pname">M. De Cuyper</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">78</span><span class="badge-salary s-lo">$1.5M</span></div>
+      <div class="player-row"><span class="num">8</span><span class="pos">CM</span><span class="pname">H. Vanaken</span><span class="pclub">Club Brugge</span><span class="badge-rating s-md">82</span><span class="badge-salary s-md">$2.5M</span></div>
+      <div class="player-row"><span class="num">11</span><span class="pos">CM</span><span class="pname">Y. Tielemans</span><span class="pclub">Aston Villa</span><span class="badge-rating s-md">83</span><span class="badge-salary s-md">$6.2M</span></div>
+      <div class="player-row"><span class="num">7</span><span class="pos">RW</span><span class="pname">J. Doku</span><span class="pclub">Manchester City</span><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$8.5M</span></div>
+      <div class="player-row"><span class="num">10</span><span class="pos">AM</span><span class="pname">K. De Bruyne (c)</span><span class="pclub">Manchester City</span><span class="badge-rating s-hi">90</span><span class="badge-salary s-hi">$21.7M</span></div>
+      <div class="player-row"><span class="num">22</span><span class="pos">LW</span><span class="pname">L. Trossard</span><span class="pclub">Arsenal</span><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$6.8M</span></div>
+      <div class="player-row"><span class="num">9</span><span class="pos">ST</span><span class="pname">R. Lukaku</span><span class="pclub">Napoli</span><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$18.2M</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⭐</span> Key Players</div>
+  <div class="key-players">
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#c60b1e,#ff6b6b)">RO</div><div class="kp-name">Rodri</div><div class="kp-pos">Midfielder · Spain</div><div class="kp-club">Manchester City</div><div class="kp-stats"><span class="badge-rating s-hi">91</span><span class="badge-salary s-hi">$18.7M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#c60b1e,#ff6b6b)">MM</div><div class="kp-name">Mikel Merino</div><div class="kp-pos">Midfielder · Spain</div><div class="kp-club">Real Sociedad</div><div class="kp-stats"><span class="badge-rating s-md">84</span><span class="badge-salary s-md">$4.5M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">KB</div><div class="kp-name">Kevin De Bruyne</div><div class="kp-pos">Captain · Belgium</div><div class="kp-club">Manchester City</div><div class="kp-stats"><span class="badge-rating s-hi">90</span><span class="badge-salary s-hi">$21.7M</span></div></div>
+    <div class="kp-card"><div class="kp-avatar" style="background:linear-gradient(135deg,#e22726,#ff6b6b)">RL</div><div class="kp-name">Romelu Lukaku</div><div class="kp-pos">Striker · Belgium</div><div class="kp-club">Napoli</div><div class="kp-stats"><span class="badge-rating s-hi">86</span><span class="badge-salary s-hi">$18.2M</span></div></div>
+  </div>
+  <div class="section-title"><span class="icon">📋</span> Full Squads</div>
+  <div class="squads-grid">
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">🇪🇸</span><span class="sq-name">Spain</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">David Raya</span><span class="sq-club">Arsenal</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">Dani Carvajal</span><span class="sq-club">Real Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">Robin Le Normand</span><span class="sq-club">Real Sociedad</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">DF</span><span class="sq-name">Nacho</span><span class="sq-club">Al-Qadsiah</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">DF</span><span class="sq-name">Pau Cubarsi</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">MF</span><span class="sq-name">Mikel Merino</span><span class="sq-club">Real Sociedad</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">Alvaro Morata</span><span class="sq-club">AC Milan</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">Pedri</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">Ferran Torres</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">MF</span><span class="sq-name">Dani Olmo</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">FW</span><span class="sq-name">Nico Williams</span><span class="sq-club">Athletic Club</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">DF</span><span class="sq-name">Alex Grimaldo</span><span class="sq-club">Leverkusen</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">GK</span><span class="sq-name">Alex Remiro</span><span class="sq-club">Real Sociedad</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">DF</span><span class="sq-name">Aymeric Laporte</span><span class="sq-club">Al-Nassr</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">MF</span><span class="sq-name">Fabian Ruiz</span><span class="sq-club">PSG</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">MF</span><span class="sq-name">Rodri</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">FW</span><span class="sq-name">Alex Baena</span><span class="sq-club">Villarreal</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">DF</span><span class="sq-name">Marcos Llorente</span><span class="sq-club">Atletico Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">FW</span><span class="sq-name">Lamine Yamal</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">FW</span><span class="sq-name">Ansu Fati</span><span class="sq-club">Barcelona</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">FW</span><span class="sq-name">Mikel Oyarzabal</span><span class="sq-club">Real Sociedad</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">DF</span><span class="sq-name">Pedro Porro</span><span class="sq-club">Tottenham</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">GK</span><span class="sq-name">Unai Simon</span><span class="sq-club">Athletic Club</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">DF</span><span class="sq-name">Marc Cucurella</span><span class="sq-club">Chelsea</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">MF</span><span class="sq-name">Martin Zubimendi</span><span class="sq-club">Real Sociedad</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">FW</span><span class="sq-name">Joselu</span><span class="sq-club">Real Madrid</span></div>
+    </div>
+    <div class="squad-card">
+      <div class="sq-header"><span class="sq-flag">🇧🇪</span><span class="sq-name">Belgium</span><span class="sq-count">26 Players</span></div>
+      <div class="squad-player"><span class="sq-num">1</span><span class="sq-pos">GK</span><span class="sq-name">Matz Sels</span><span class="sq-club">Nott'm Forest</span></div>
+      <div class="squad-player"><span class="sq-num">2</span><span class="sq-pos">DF</span><span class="sq-name">Zeno Debast</span><span class="sq-club">Anderlecht</span></div>
+      <div class="squad-player"><span class="sq-num">3</span><span class="sq-pos">DF</span><span class="sq-name">Arthur Theate</span><span class="sq-club">Rennes</span></div>
+      <div class="squad-player"><span class="sq-num">4</span><span class="sq-pos">DF</span><span class="sq-name">Brandon Mechele</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">5</span><span class="sq-pos">DF</span><span class="sq-name">Maxim De Cuyper</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">6</span><span class="sq-pos">MF</span><span class="sq-name">Orel Mangala</span><span class="sq-club">Lyon</span></div>
+      <div class="squad-player"><span class="sq-num">7</span><span class="sq-pos">FW</span><span class="sq-name">Jeremy Doku</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">8</span><span class="sq-pos">MF</span><span class="sq-name">Hans Vanaken</span><span class="sq-club">Club Brugge</span></div>
+      <div class="squad-player"><span class="sq-num">9</span><span class="sq-pos">FW</span><span class="sq-name">Romelu Lukaku</span><span class="sq-club">Napoli</span></div>
+      <div class="squad-player"><span class="sq-num">10</span><span class="sq-pos">MF</span><span class="sq-name">Kevin De Bruyne (c)</span><span class="sq-club">Manchester City</span></div>
+      <div class="squad-player"><span class="sq-num">11</span><span class="sq-pos">MF</span><span class="sq-name">Youri Tielemans</span><span class="sq-club">Aston Villa</span></div>
+      <div class="squad-player"><span class="sq-num">12</span><span class="sq-pos">GK</span><span class="sq-name">Thibaut Courtois</span><span class="sq-club">Real Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">13</span><span class="sq-pos">GK</span><span class="sq-name">Thomas Kaminski</span><span class="sq-club">Luton Town</span></div>
+      <div class="squad-player"><span class="sq-num">14</span><span class="sq-pos">DF</span><span class="sq-name">Wout Faes</span><span class="sq-club">Leicester City</span></div>
+      <div class="squad-player"><span class="sq-num">15</span><span class="sq-pos">MF</span><span class="sq-name">Amadou Onana</span><span class="sq-club">Aston Villa</span></div>
+      <div class="squad-player"><span class="sq-num">16</span><span class="sq-pos">DF</span><span class="sq-name">Ameen Al-Dakhil</span><span class="sq-club">Burnley</span></div>
+      <div class="squad-player"><span class="sq-num">17</span><span class="sq-pos">FW</span><span class="sq-name">Charles De Ketelaere</span><span class="sq-club">Atalanta</span></div>
+      <div class="squad-player"><span class="sq-num">18</span><span class="sq-pos">DF</span><span class="sq-name">Timothy Castagne</span><span class="sq-club">Fulham</span></div>
+      <div class="squad-player"><span class="sq-num">19</span><span class="sq-pos">FW</span><span class="sq-name">Lois Openda</span><span class="sq-club">RB Leipzig</span></div>
+      <div class="squad-player"><span class="sq-num">20</span><span class="sq-pos">DF</span><span class="sq-name">Sebastiaan Bornauw</span><span class="sq-club">Wolfsburg</span></div>
+      <div class="squad-player"><span class="sq-num">21</span><span class="sq-pos">MF</span><span class="sq-name">Mandela Keita</span><span class="sq-club">Antwerp</span></div>
+      <div class="squad-player"><span class="sq-num">22</span><span class="sq-pos">FW</span><span class="sq-name">Leandro Trossard</span><span class="sq-club">Arsenal</span></div>
+      <div class="squad-player"><span class="sq-num">23</span><span class="sq-pos">MF</span><span class="sq-name">Alexis Saelemaekers</span><span class="sq-club">Milan</span></div>
+      <div class="squad-player"><span class="sq-num">24</span><span class="sq-pos">MF</span><span class="sq-name">Dodi Lukebakio</span><span class="sq-club">Sevilla</span></div>
+      <div class="squad-player"><span class="sq-num">25</span><span class="sq-pos">MF</span><span class="sq-name">Arthur Vermeeren</span><span class="sq-club">Atletico Madrid</span></div>
+      <div class="squad-player"><span class="sq-num">26</span><span class="sq-pos">DF</span><span class="sq-name">Jorne Spileers</span><span class="sq-club">Club Brugge</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚔️</span> Head to Head</div>
+  <div class="h2h-section">
+    <div class="h2h-record">Spain 19 – 3 Belgium</div>
+    <div class="h2h-detail">7 meetings · Spain dominant · Draws: 1</div>
+    <div class="h2h-note">Last meeting: 2016 friendly — Belgium won 1-0. World Cup history: 1990 Round of 16 — Spain won 2-1. Their first knockout meeting since then.</div>
+  </div>
+  <div class="section-title"><span class="icon">💡</span> Tactical Preview</div>
+  <div class="comparison">
+    <div class="comp-card esp"><h3>🇪🇸 Spain's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">4-3-3</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">Possession-dominant, high press</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Yamal & Olmo's creativity, Rodri's control</span></div>
+      <div class="stat"><span class="label">Key Stat</span><span class="value">0 goals conceded all tournament — perfect defense</span></div>
+    </div>
+    <div class="comp-card bel"><h3>🇧🇪 Belgium's Approach</h3>
+      <div class="stat"><span class="label">Formation</span><span class="value">4-3-3 / 4-2-3-1</span></div>
+      <div class="stat"><span class="label">Style</span><span class="value">De Bruyne orchestrates, Lukaku target man</span></div>
+      <div class="stat"><span class="label">Danger</span><span class="value">Doku's dribbling, Courtois' shot-stopping</span></div>
+      <div class="stat"><span class="label">Key Stat</span><span class="value">13 goals scored — most of any remaining team</span></div>
+    </div>
+  </div>
+  <div class="section-title"><span class="icon">⚡</span> Golden Boot Watch</div>
+  <div class="golden-boot">
+    <table><tr><th>Player</th><th>Team</th><th style="text-align:center">Goals</th></tr>
+      <tr><td>Mikel Oyarzabal</td><td>🇪🇸 Spain</td><td style="text-align:center">4</td></tr>
+      <tr><td>Romelu Lukaku</td><td>🇧🇪 Belgium</td><td style="text-align:center">3</td></tr>
+      <tr><td>Lamine Yamal</td><td>🇪🇸 Spain</td><td style="text-align:center">2</td></tr>
+      <tr><td>Charles De Ketelaere</td><td>🇧🇪 Belgium</td><td style="text-align:center">2</td></tr>
+    </table>
+  </div>
+  <div class="section-title"><span class="icon">🏛️</span> Match Context</div>
+  <div class="comparison">
+    <div class="comp-card"><h3>⚽ Quarterfinal Clash</h3>
+      <div class="stat"><span class="label">Referee</span><span class="value">Szymon Marciniak (Poland)</span></div>
+      <div class="stat"><span class="label">Stadium</span><span class="value">SoFi Stadium, Inglewood, CA</span></div>
+      <div class="stat"><span class="label">Capacity</span><span class="value">70,240 — sold out</span></div>
+      <div class="stat"><span class="label">Weather</span><span class="value">78°F · Sunny · Open roof possible</span></div>
+    </div>
+    <div class="comp-card"><h3>📰 Key Stories</h3>
+      <div class="stat"><span class="label">Spain's Perfect D</span><span class="value">Can anyone breach their defense?</span></div>
+      <div class="stat"><span class="label">De Bruyne's Last Chance</span><span class="value">KDB chasing Belgium's first WC final</span></div>
+      <div class="stat"><span class="label">Courtois vs Spain</span><span class="value">Real Madrid keeper faces former rivals</span></div>
+    </div>
+  </div>
+  <div class="prediction-banner">
+    ⚽ <strong>Kickoff: 3:00 PM ET · SoFi Stadium, Inglewood, CA</strong><br>
+    Two European giants clash for a semifinal berth. Spain's impenetrable defense meets Belgium's high-flying attack. Can Courtois stop his club rivals?<br>
+    <strong style="color:#fcd116;">Prediction: Spain 1-1 Belgium (Spain wins on penalties)</strong>
+  </div>
+  <div class="disclaimer">
+    Predicted lineups based on latest team news as of July 7, 2026. Player ratings from EA FC 26. Salaries are annual figures from public reports. Match details subject to change.
+  </div>
+</div>
+</body>
+</html>
