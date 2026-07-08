@@ -38,7 +38,8 @@
     transform:translateY(-2px);
     border-color:rgba(252,209,22,0.3);
   }
-  .link-card .flags{font-size:28px}
+  .link-card .flags{font-size:0;display:flex;align-items:center;gap:6px}
+  .link-card .flags img{height:28px;width:auto;display:inline-block}
   .link-card .text{flex:1}
   .link-card .matchup{font-size:16px;font-weight:700}
   .link-card .stage{font-size:13px;color:#94a3b8}
@@ -63,6 +64,7 @@
     color:#60a5fa;
     border:1px solid rgba(96,165,250,0.2);
   }
+  .fimg{height:1em;width:auto;vertical-align:middle;display:inline-block}
 </style>
 </head>
 <body>
@@ -74,7 +76,7 @@
     <div class="day-label">📅 Today — Tue, Jul 7</div>
     <div class="links">
       <a href="egypt-vs-argentina.html" class="link-card">
-        <div class="flags">🇪🇬🇦🇷</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/eg.png" alt="Egypt"><img src="https://flagcdn.com/24x18/ar.png" alt="Argentina"></div>
         <div class="text">
           <div class="matchup">Egypt vs Argentina</div>
           <div class="stage">Round of 16 · Atlanta Stadium · 12:00 PM ET</div>
@@ -82,7 +84,7 @@
         <span class="badge badge-today">Today</span>
       </a>
       <a href="switzerland-vs-colombia.html" class="link-card">
-        <div class="flags">🇨🇭🇨🇴</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/ch.png" alt="Switzerland"><img src="https://flagcdn.com/24x18/co.png" alt="Colombia"></div>
         <div class="text">
           <div class="matchup">Switzerland vs Colombia</div>
           <div class="stage">Round of 16 · BC Place, Vancouver · 4:00 PM ET</div>
@@ -96,7 +98,7 @@
     <div class="day-label">🏆 Quarterfinals — Upcoming</div>
     <div class="links">
       <a href="france-vs-morocco.html" class="link-card">
-        <div class="flags">🇫🇷🇲🇦</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/fr.png" alt="France"><img src="https://flagcdn.com/24x18/ma.png" alt="Morocco"></div>
         <div class="text">
           <div class="matchup">France vs Morocco</div>
           <div class="stage">Quarterfinal · Gillette Stadium, Foxborough · Thu, Jul 9 · 4:00 PM ET</div>
@@ -104,7 +106,7 @@
         <span class="badge badge-upcoming">Upcoming</span>
       </a>
       <a href="spain-vs-belgium.html" class="link-card">
-        <div class="flags">🇪🇸🇧🇪</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/es.png" alt="Spain"><img src="https://flagcdn.com/24x18/be.png" alt="Belgium"></div>
         <div class="text">
           <div class="matchup">Spain vs Belgium</div>
           <div class="stage">Quarterfinal · SoFi Stadium, Inglewood · Fri, Jul 10 · 3:00 PM ET</div>
@@ -112,7 +114,7 @@
         <span class="badge badge-upcoming">Upcoming</span>
       </a>
       <a href="norway-vs-england.html" class="link-card">
-        <div class="flags">🇳🇴🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/no.png" alt="Norway"><img src="https://flagcdn.com/24x18/gb-eng.png" alt="England"></div>
         <div class="text">
           <div class="matchup">Norway vs England</div>
           <div class="stage">Quarterfinal · Hard Rock Stadium, Miami · Sat, Jul 11 · 5:00 PM ET</div>
@@ -120,7 +122,7 @@
         <span class="badge badge-upcoming">Upcoming</span>
       </a>
       <a href="argentina-vs-switzerland.html" class="link-card">
-        <div class="flags">🇦🇷🇨🇭</div>
+        <div class="flags"><img src="https://flagcdn.com/24x18/ar.png" alt="Argentina"><img src="https://flagcdn.com/24x18/ch.png" alt="Switzerland"></div>
         <div class="text">
           <div class="matchup">Argentina vs Switzerland</div>
           <div class="stage">Quarterfinal · Arrowhead Stadium, Kansas City · Sat, Jul 11 · 9:00 PM ET</div>
